@@ -12,7 +12,7 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div>
+    <div className="overflow-x-hidden w-full">
       <Navbar />
       <Hero />
 
@@ -30,7 +30,7 @@ function App() {
       <Clients />
 
       {/* what people say about us */}
-      <ProjectHighlight />
+    
 
       {/* Article & Blogs */}
       <Blog />

@@ -1,64 +1,155 @@
+import { motion } from 'framer-motion';
+
+const cards = [
+  {
+    id: '01',
+    title: 'Energy Storage Solutions',
+    img: 'https://res.cloudinary.com/ddodvrq4x/image/upload/v1749051470/Website_demo/ant1.png',
+  },
+  {
+    id: '02',
+    title: 'BMS & Thermal Management',
+    img: 'https://res.cloudinary.com/ddodvrq4x/image/upload/v1749051498/Website_demo/ant2.png',
+  },
+  {
+    id: '03',
+    title: 'EV Battery Solutions',
+    img: 'https://res.cloudinary.com/ddodvrq4x/image/upload/v1749051522/Website_demo/ant3.png',
+  },
+  {
+    id: '04',
+    title: 'Custom Energy Systems',
+    img: 'https://res.cloudinary.com/ddodvrq4x/image/upload/v1749051548/Website_demo/ant4.png',
+  },
+];
+
 export default function Services() {
-  return(
-    <div className="bg-zinc-200 px-6 py-20">
-  {/* Header */}
-  <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-12 mb-16">
-    <div>
-      <p className="text-green-500 font-bold uppercase tracking-wide mb-2">Awesome services</p>
-      <h2 className="text-4xl font-extrabold text-gray-900 leading-tight">
-        We specialize in <br /> state-of-the-art energy solutions
-      </h2>
-    </div>
-    <div>
-      <p className="text-lg font-semibold text-neutral-800 mb-4">
-        Allan wrasse climbing gourami amur pike Arctic char, steelhead sprat sea lamprey grunion. 
-        Walleye poolfish sand goby butterfly ray stream catfish.
-      </p>
-      <p className="text-lg text-zinc-600">
-        Spanish mackerel yellow weaver sixgill. Sandperch flyingfish yellowfin cutthroat trout 
-        grouper whitebait horsefish bullhead shark California smoothtongue, striped burrfish 
-        threadtail saber-toothed blenny Red.
-      </p>
-    </div>
-  </div>
+  return (
+    <motion.div
+      className="bg-zinc-200 px-6 py-20 overflow-x-hidden"
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 1, type: 'spring', stiffness: 60 }}
+    >
+      {/* Header */}
+      <motion.div
+        className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-12 mb-16"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={{
+          hidden: {},
+          visible: { transition: { staggerChildren: 0.18 } },
+        }}
+      >
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2, duration: 0.7, type: 'spring', stiffness: 60 }}
+        >
+          <motion.p
+            className="text-green-500 font-bold uppercase tracking-wide mb-2"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            Our Expertise
+          </motion.p>
+          <motion.h2
+            className="text-4xl font-extrabold text-gray-900 leading-tight mb-2"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.7 }}
+          >
+            Advanced Battery & Energy Storage Systems
+          </motion.h2>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.5, duration: 0.7, type: 'spring', stiffness: 60 }}
+        >
+          <motion.p
+            className="text-lg font-semibold text-neutral-800 mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+          >
+            We specialize in energy storage solutions, EV battery pack design, BMS development, and
+            power management systems tailored for industries like EVs, agriculture, and solar.
+          </motion.p>
+          <motion.p
+            className="text-lg text-zinc-600"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
+          >
+            From public infrastructure to last-mile delivery and customized energy systems,
+            we deliver performance-driven, safe, and scalable solutions for a sustainable future.
+          </motion.p>
+        </motion.div>
+      </motion.div>
 
-  {/* Cards */}
-  <div className="max-w-screen-xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    {[
-      {
-        id: "01",
-        title: "Public Infrastructure",
-        img: "https://res.cloudinary.com/ddodvrq4x/image/upload/v1749051470/Website_demo/ant1.png",
-      },
-      {
-        id: "02",
-        title: "Customized Applications",
-        img: "https://res.cloudinary.com/ddodvrq4x/image/upload/v1749051498/Website_demo/ant2.png",
-      },
-      {
-        id: "03",
-        title: "Agriculture",
-        img: "https://res.cloudinary.com/ddodvrq4x/image/upload/v1749051522/Website_demo/ant3.png",
-      },
-      {
-        id: "04",
-        title: "Logistics and Delivery",
-        img: "https://res.cloudinary.com/ddodvrq4x/image/upload/v1749051548/Website_demo/ant4.png",
-      },
-    ].map((card) => (
-      <div key={card.id} className="relative bg-white shadow-md  overflow-visible">
-        <img src={card.img} alt={card.title} className="w-full h-[300px] object-cover" />
-        <div className="absolute top-[-30px] left-4 text-white text-5xl font-bold font-manrope z-10">
-          {card.id}
-        </div>
-        <div className="bg-gray-900 mb-5 text-white p-4 flex justify-between items-center">
-          <p className="text-lg font-extrabold font-['Plus_Jakarta_Sans']">{card.title}</p>
-          <span className="text-white">↗</span>
-        </div>
-      </div>
-    ))}
-  </div>
-</div>
-
-  )
+      {/* Cards */}
+      <motion.div
+        className="max-w-screen-xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={{
+          hidden: {},
+          visible: { transition: { staggerChildren: 0.18 } },
+        }}
+      >
+        {cards.map((card, i) => (
+          <motion.div
+            key={card.id}
+            className="relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ delay: 0.2 + i * 0.15, duration: 0.7, type: 'spring', stiffness: 80 }}
+            whileHover={{ scale: 1.02 }}
+          >
+            <motion.div
+              className="absolute top-6 left-6 text-white text-5xl font-bold z-10"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 + i * 0.1, duration: 0.6 }}
+            >
+              {card.id}
+            </motion.div>
+            
+            <div className="relative flex-grow">
+              <motion.img
+                src={card.img}
+                alt={card.title}
+                className="w-full h-full object-cover min-h-[260px]"
+                initial={{ scale: 1.05 }}
+                whileHover={{ scale: 1.08 }}
+                transition={{ type: 'spring', stiffness: 120 }}
+              />
+            </div>
+            
+            <motion.div
+              className="bg-[#1a2e44] text-white p-4 flex justify-between items-center w-full"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 + i * 0.1, duration: 0.6 }}
+            >
+              <p className="text-lg font-bold">{card.title}</p>
+              <motion.span
+                className="text-white text-2xl"
+                whileHover={{ rotate: 45 }}
+                transition={{ type: 'spring', stiffness: 120 }}
+              >↗</motion.span>
+            </motion.div>
+          </motion.div>
+        ))}
+      </motion.div>
+    </motion.div>
+  );
 }
