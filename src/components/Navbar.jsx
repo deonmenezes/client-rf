@@ -11,7 +11,7 @@ const navLinks = [
   { label: 'Contacts', href: '#' },
 ];
 
-const Navbar = () => {
+const Navbar = ({ onNavigate, activeSection }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   // Animation variants
@@ -71,18 +71,23 @@ const Navbar = () => {
         {navLinks.map((link, i) => (
           <motion.a
             key={link.label}
-            href={link.href}
+            href="#"
             custom={i}
             variants={linkVariants}
             initial="hidden"
             animate="visible"
             whileHover={{ scale: 1.13, color: '#22c55e' }}
-            className={`relative text-lg font-medium transition-colors duration-300 px-2 group ${i === 0 ? 'text-green-500' : 'text-gray-700 hover:text-green-500'}`}
+            className={`relative text-lg font-medium transition-colors duration-300 px-2 group ${activeSection === link.label ? 'text-green-500' : 'text-gray-700 hover:text-green-500'}`}
+            onClick={e => {
+              e.preventDefault();
+              onNavigate && onNavigate(link.label);
+              setMobileOpen(false);
+            }}
           >
             {link.label}
             <motion.span
               layoutId="underline"
-              className={`block h-0.5 bg-green-500 absolute left-0 -bottom-1 rounded-full ${i === 0 ? 'w-full' : 'w-0 group-hover:w-full transition-all duration-300'}`}
+              className={`block h-0.5 bg-green-500 absolute left-0 -bottom-1 rounded-full ${activeSection === link.label ? 'w-full' : 'w-0 group-hover:w-full transition-all duration-300'}`}
             />
           </motion.a>
         ))}
@@ -90,17 +95,11 @@ const Navbar = () => {
 
       {/* Right: Search and Button */}
       <div className="flex items-center gap-4">
-        <motion.div
-          whileHover={{ rotate: 20, scale: 1.2 }}
-          whileTap={{ scale: 0.9 }}
-          className="cursor-pointer"
-        >
-          <Search className="w-6 h-6 text-green-600" />
-        </motion.div>
         <motion.button
           whileHover={{ scale: 1.07, boxShadow: '0 0 16px #22c55e' }}
           whileTap={{ scale: 0.96 }}
           className="bg-gradient-to-r from-green-400 via-green-500 to-emerald-500 text-white px-6 py-3 rounded-lg shadow-lg font-semibold text-base hidden md:block focus:outline-none focus:ring-2 focus:ring-green-400 transition-all duration-300 glow-btn"
+          onClick={() => onNavigate && onNavigate('Contacts')}
         >
           Get In Touch
         </motion.button>
@@ -134,13 +133,17 @@ const Navbar = () => {
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.label}
-                  href={link.href}
+                  href="#"
                   initial={{ x: 40, opacity: 0 }}
                   animate={{ x: 0, opacity: 1, transition: { delay: 0.1 + i * 0.07 } }}
                   exit={{ x: 40, opacity: 0 }}
                   whileHover={{ scale: 1.08, color: '#22c55e' }}
-                  className={`text-lg font-semibold px-2 py-1 rounded transition-colors duration-300 ${i === 0 ? 'text-green-500' : 'text-gray-700 hover:text-green-500'}`}
-                  onClick={() => setMobileOpen(false)}
+                  className={`text-lg font-semibold px-2 py-1 rounded transition-colors duration-300 ${activeSection === link.label ? 'text-green-500' : 'text-gray-700 hover:text-green-500'}`}
+                  onClick={e => {
+                    e.preventDefault();
+                    onNavigate && onNavigate(link.label);
+                    setMobileOpen(false);
+                  }}
                 >
                   {link.label}
                 </motion.a>
@@ -150,6 +153,7 @@ const Navbar = () => {
               whileHover={{ scale: 1.07, boxShadow: '0 0 16px #22c55e' }}
               whileTap={{ scale: 0.96 }}
               className="mt-10 bg-gradient-to-r from-green-400 via-green-500 to-emerald-500 text-white px-6 py-3 rounded-lg shadow-lg font-semibold text-base focus:outline-none focus:ring-2 focus:ring-green-400 transition-all duration-300"
+              onClick={() => onNavigate && onNavigate('Contacts')}
             >
               Get In Touch
             </motion.button>

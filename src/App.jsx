@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -10,35 +11,36 @@ import Blog from './components/Blog';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-function App() {
-  return (
-    <div className="overflow-x-hidden w-full">
-      <Navbar />
+const SECTION_COMPONENTS = {
+  Home: (
+    <>
       <Hero />
-
-      {/* Services */}
-      <Services />
-
-      
       <About />
       <Features />
-
-      {/* has feature page */}
       <Gallery />
-
-      {/* Partner Page */}
       <Clients />
+      <ProjectHighlight />
+    </>
+  ),
+  Services: <Services />, // You can add more related sections if needed
+  Projects: <Clients />, // Show Clients component for Projects link
+  Blog: <Blog />,
+  Contacts: <Contact />,
+};
 
-      {/* what people say about us */}
-    
+function App() {
+  const [section, setSection] = useState('Home');
 
-      {/* Article & Blogs */}
-      <Blog />
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [section]);
 
-      {/* Contact Page */}
-      <Contact />
-
-      {/* Footer */}
+  return (
+    <div className="overflow-x-hidden w-full">
+      <Navbar onNavigate={setSection} activeSection={section} />
+      <div className="pt-20">
+        {SECTION_COMPONENTS[section] || SECTION_COMPONENTS['Home']}
+      </div>
       <Footer />
     </div>
   );
