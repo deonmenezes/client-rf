@@ -8,7 +8,7 @@ const cards = [
   },
   {
     id: '02',
-    title: 'BMS & Thermal Management',
+    title: 'BMS & Thermal',
     img: 'https://res.cloudinary.com/ddodvrq4x/image/upload/v1749051498/Website_demo/ant2.png',
   },
   {
@@ -26,12 +26,27 @@ const cards = [
 export default function Services() {
   return (
     <motion.div
-      className="bg-zinc-200 px-6 py-20 overflow-x-hidden"
+      className="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 px-6 py-20 overflow-x-hidden text-white font-sans relative overflow-hidden"
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 1, type: 'spring', stiffness: 60 }}
     >
+      {/* Subtle grid overlay */}
+      <div className="absolute inset-0 pointer-events-none opacity-20 z-0">
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10" />
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(6, 182, 212, 0.08) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(6, 182, 212, 0.08) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px'
+          }}
+        />
+      </div>
+
       {/* Header */}
       <motion.div
         className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-12 mb-16"
@@ -49,7 +64,7 @@ export default function Services() {
           transition={{ delay: 0.2, duration: 0.7, type: 'spring', stiffness: 60 }}
         >
           <motion.p
-            className="text-green-500 font-bold uppercase tracking-wide mb-2"
+            className="text-cyan-400 font-bold uppercase tracking-wide mb-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
@@ -57,7 +72,7 @@ export default function Services() {
             Our Expertise
           </motion.p>
           <motion.h2
-            className="text-4xl font-extrabold text-gray-900 leading-tight mb-2"
+            className="text-4xl font-extrabold text-white leading-tight mb-2 drop-shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.7 }}
@@ -71,7 +86,7 @@ export default function Services() {
           transition={{ delay: 0.5, duration: 0.7, type: 'spring', stiffness: 60 }}
         >
           <motion.p
-            className="text-lg font-semibold text-neutral-800 mb-4"
+            className="text-lg font-semibold text-cyan-200 mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
@@ -80,7 +95,7 @@ export default function Services() {
             power management systems tailored for industries like EVs, agriculture, and solar.
           </motion.p>
           <motion.p
-            className="text-lg text-zinc-600"
+            className="text-lg text-purple-200"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.6 }}
@@ -93,7 +108,7 @@ export default function Services() {
 
       {/* Cards */}
       <motion.div
-        className="max-w-screen-xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
+        className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-2"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
@@ -105,7 +120,7 @@ export default function Services() {
         {cards.map((card, i) => (
           <motion.div
             key={card.id}
-            className="relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col"
+            className="relative bg-white/5 rounded-xl overflow-hidden shadow-xl hover:shadow-cyan-400/20 transition-shadow duration-300 flex flex-col border border-cyan-400/20 backdrop-blur-lg z-10"
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -113,7 +128,7 @@ export default function Services() {
             whileHover={{ scale: 1.02 }}
           >
             <motion.div
-              className="absolute top-6 left-6 text-white text-5xl font-bold z-10"
+              className="absolute top-6 left-6 text-cyan-400 text-5xl font-bold z-10"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -126,7 +141,7 @@ export default function Services() {
               <motion.img
                 src={card.img}
                 alt={card.title}
-                className="w-full h-full object-cover min-h-[260px]"
+                className="w-full h-56 sm:h-60 md:h-64 object-cover rounded-t-xl"
                 initial={{ scale: 1.05 }}
                 whileHover={{ scale: 1.08 }}
                 transition={{ type: 'spring', stiffness: 120 }}
@@ -134,7 +149,7 @@ export default function Services() {
             </div>
             
             <motion.div
-              className="bg-[#1a2e44] text-white p-4 flex justify-between items-center w-full"
+              className="bg-gradient-to-r from-cyan-900 via-[#1e293b] to-purple-900 text-white p-4 flex justify-between items-center w-full"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -142,7 +157,7 @@ export default function Services() {
             >
               <p className="text-lg font-bold">{card.title}</p>
               <motion.span
-                className="text-white text-2xl"
+                className="text-purple-400 text-2xl"
                 whileHover={{ rotate: 45 }}
                 transition={{ type: 'spring', stiffness: 120 }}
               >↗</motion.span>

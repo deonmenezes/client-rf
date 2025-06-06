@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -10,39 +11,48 @@ import ProjectHighlight from './components/ProjectHighlight';
 import Blog from './components/Blog';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Chatbot from './components/Chatbot';
+import WhatsAppButton from './components/WhatsAppButton';
 
-const SECTION_COMPONENTS = {
-  Home: (
-    <>
-      <Hero />
-      <About />
-      <Features />
-      <Gallery />
-      <Clients />
-      <ProjectHighlight />
-    </>
-  ),
-  Services: <Services />, // You can add more related sections if needed
-  Projects: <Clients />, // Show Clients component for Projects link
-  Blog: <Blog />,
-  Contacts: <Contact />,
-};
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname]);
+  return null;
+}
 
 function App() {
-  const [section, setSection] = useState('Home');
-
-  React.useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [section]);
-
   return (
-    <div className="overflow-x-hidden w-full">
-      <Navbar onNavigate={setSection} activeSection={section} />
-      <div className="pt-20">
-        {SECTION_COMPONENTS[section] || SECTION_COMPONENTS['Home']}
+    <BrowserRouter>
+      <ScrollToTop />
+      <div className="overflow-x-hidden min-h-screen w-full bg-gray-900 text-white">
+        <Navbar />
+        <div className="pt-20">
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Hero />
+                <About />
+                <Services/>
+                <Features />
+                <Gallery />
+                <Clients />
+                <Blog />
+                <Contact />
+              </>
+            } />
+            <Route path="/services" element={<Features />} />
+            <Route path="/projects" element={<Clients />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contacts" element={<Contact />} />
+          </Routes>
+        </div>
+        <Footer />
+        <Chatbot />
+        <WhatsAppButton />
       </div>
-      <Footer />
-    </div>
+    </BrowserRouter>
   );
 }
 

@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
-import { Menu, Search, X } from 'lucide-react';
+import { Menu, X, Home, Wrench, Briefcase, FileText, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import logo from "../assets/logo69.jpg"
+import { Link, NavLink } from 'react-router-dom';
+import logo from "../assets/logo69.jpg";
 
 const navLinks = [
-  { label: 'Home', href: '#' },
-  { label: 'Services', href: '#' },
-  { label: 'Projects', href: '#' },
-  { label: 'Blog', href: '#' },
-  { label: 'Contacts', href: '#' },
+  { label: 'Home', to: '/', icon: <Home className="w-5 h-5 mr-2" /> },
+  { label: 'Services', to: '/services', icon: <Wrench className="w-5 h-5 mr-2" /> },
+  { label: 'Projects', to: '/projects', icon: <Briefcase className="w-5 h-5 mr-2" /> },
+  { label: 'Blog', to: '/blog', icon: <FileText className="w-5 h-5 mr-2" /> },
+  { label: 'Contacts', to: '/contacts', icon: <Phone className="w-5 h-5 mr-2" /> },
 ];
 
-const Navbar = ({ onNavigate, activeSection }) => {
+const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Animation variants
   const navVariants = {
     hidden: { y: -60, opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 80, damping: 12 } },
   };
+
   const linkVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08 } }),
   };
+
   const mobileMenuVariants = {
     closed: { x: '100%' },
     open: { x: 0, transition: { type: 'spring', stiffness: 60, damping: 15 } },
@@ -33,79 +35,70 @@ const Navbar = ({ onNavigate, activeSection }) => {
       initial="hidden"
       animate="visible"
       variants={navVariants}
-      className="w-full h-20 fixed top-0 left-0 z-50 bg-white/60 backdrop-blur-lg shadow-lg flex items-center justify-between px-4 md:px-10 border-b border-white/20"
-      style={{ boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)' }}
+      className="w-full h-20 fixed top-0 left-0 z-50 bg-[#0f172a]/90 backdrop-blur-xl border-b border-cyan-500/10 shadow-lg flex items-center justify-between px-4 md:px-12 font-manrope"
     >
-      {/* Left: Hamburger and Logo */}
-      <div className="flex items-center gap-4">
-        {/* Hamburger for mobile */}
-        <motion.div
-          whileTap={{ scale: 0.85 }}
-          className="md:hidden"
-        >
+      {/* Logo & Hamburger */}
+      <div className="flex items-center gap-4 z-50 relative">
+        <motion.div whileTap={{ scale: 0.85 }} className="md:hidden">
           {mobileOpen ? (
-            <X className="w-7 h-7 text-green-600 cursor-pointer" onClick={() => setMobileOpen(false)} />
+            <X className="w-7 h-7 text-cyan-400 cursor-pointer" onClick={() => setMobileOpen(false)} />
           ) : (
-            <Menu className="w-7 h-7 text-green-600 cursor-pointer" onClick={() => setMobileOpen(true)} />
+            <Menu className="w-7 h-7 text-cyan-400 cursor-pointer" onClick={() => setMobileOpen(true)} />
           )}
         </motion.div>
-        {/* Logo */}
         <motion.div
-          whileHover={{ scale: 1.12, rotate: -3 }}
+          whileHover={{ scale: 1.1, rotate: -2 }}
           whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0, transition: { delay: 0.2 } }}
-          className="flex items-center gap-2 cursor-pointer select-none"
+          className="cursor-pointer"
         >
-          <img
-            src={logo}
-            alt="Logo"
-            className="w-14 h-14 drop-shadow-lg rounded-xl"
-          />
-          
+          <Link to="/">
+            <img src={logo} alt="Logo" className="w-12 h-12 rounded-xl shadow-lg" />
+          </Link>
         </motion.div>
       </div>
 
-      {/* Center: Navigation Links */}
-      <nav className="hidden md:flex gap-10 items-center">
-        {navLinks.map((link, i) => (
-          <motion.a
-            key={link.label}
-            href="#"
-            custom={i}
-            variants={linkVariants}
-            initial="hidden"
-            animate="visible"
-            whileHover={{ scale: 1.13, color: '#22c55e' }}
-            className={`relative text-lg font-medium transition-colors duration-300 px-2 group ${activeSection === link.label ? 'text-green-500' : 'text-gray-700 hover:text-green-500'}`}
-            onClick={e => {
-              e.preventDefault();
-              onNavigate && onNavigate(link.label);
-              setMobileOpen(false);
-            }}
-          >
-            {link.label}
-            <motion.span
-              layoutId="underline"
-              className={`block h-0.5 bg-green-500 absolute left-0 -bottom-1 rounded-full ${activeSection === link.label ? 'w-full' : 'w-0 group-hover:w-full transition-all duration-300'}`}
-            />
-          </motion.a>
-        ))}
-      </nav>
+      {/* Centered Navigation Bar */}
+      <div className="hidden md:flex justify-center items-center absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-full px-4">
+        <div className="flex items-center gap-2 w-full max-w-[820px] bg-white/5 backdrop-blur-lg border border-white/10 rounded-full px-4 py-2 shadow-md justify-between">
+          <div className="flex gap-1">
+            {navLinks.slice(0, -1).map((link, i) => (
+              <motion.div
+                key={link.label}
+                custom={i}
+                variants={linkVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <NavLink
+                  to={link.to}
+                  end={link.to === '/'}
+                  className={({ isActive }) =>
+                    `relative text-sm font-medium px-4 py-2 rounded-full transition-all duration-300 ${
+                      isActive ? 'text-white bg-white/10' : 'text-white hover:bg-white/10'
+                    }`
+                  }
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </NavLink>
+              </motion.div>
+            ))}
+          </div>
 
-      {/* Right: Search and Button */}
-      <div className="flex items-center gap-4">
-        <motion.button
-          whileHover={{ scale: 1.07, boxShadow: '0 0 16px #22c55e' }}
-          whileTap={{ scale: 0.96 }}
-          className="bg-gradient-to-r from-green-400 via-green-500 to-emerald-500 text-white px-6 py-3 rounded-lg shadow-lg font-semibold text-base hidden md:block focus:outline-none focus:ring-2 focus:ring-green-400 transition-all duration-300 glow-btn"
-          onClick={() => onNavigate && onNavigate('Contacts')}
-        >
-          Get In Touch
-        </motion.button>
+          {/* Gradient "Say Hello" Button */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative inline-flex items-center justify-center overflow-hidden rounded-full p-[2px] bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 shadow-md"
+          >
+            <div className="bg-[#0f172a] rounded-full px-5 py-2 text-sm font-medium text-white">
+              <Link to="/contacts">Get in touch</Link>
+            </div>
+          </motion.div>
+        </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Navigation */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.aside
@@ -113,49 +106,39 @@ const Navbar = ({ onNavigate, activeSection }) => {
             animate="open"
             exit="closed"
             variants={mobileMenuVariants}
-            className="fixed top-0 right-0 w-[80vw] max-w-xs h-screen bg-white/90 backdrop-blur-xl shadow-2xl z-[100] flex flex-col p-8 gap-8"
+            className="fixed top-0 right-0 h-screen w-[82vw] max-w-sm bg-[#0f172a]/95 backdrop-blur-2xl border-l border-cyan-500/10 z-[100] p-8 pt-10 flex flex-col gap-10"
           >
-            <div className="flex justify-between items-center mb-8">
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: -3 }}
-                className="flex items-center gap-2"
-              >
-                <img
-                  src="https://res.cloudinary.com/ddodvrq4x/image/upload/v1749052925/Website_demo/nexus_logo.png"
-                  alt="Logo"
-                  className="w-8 h-8"
-                />
-                <span className="text-xl font-extrabold text-green-600 tracking-wide">NEXUS</span>
-              </motion.div>
-              <X className="w-7 h-7 text-green-600 cursor-pointer" onClick={() => setMobileOpen(false)} />
+            <div className="flex justify-between items-center">
+              
+              <X className="w-7 h-7 text-cyan-400 cursor-pointer" onClick={() => setMobileOpen(false)} />
             </div>
-            <nav className="flex flex-col gap-6 mt-4">
-              {navLinks.map((link, i) => (
-                <motion.a
+
+            <nav className="flex flex-col gap-6">
+              {navLinks.map((link) => (
+                <NavLink
                   key={link.label}
-                  href="#"
-                  initial={{ x: 40, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1, transition: { delay: 0.1 + i * 0.07 } }}
-                  exit={{ x: 40, opacity: 0 }}
-                  whileHover={{ scale: 1.08, color: '#22c55e' }}
-                  className={`text-lg font-semibold px-2 py-1 rounded transition-colors duration-300 ${activeSection === link.label ? 'text-green-500' : 'text-gray-700 hover:text-green-500'}`}
-                  onClick={e => {
-                    e.preventDefault();
-                    onNavigate && onNavigate(link.label);
-                    setMobileOpen(false);
-                  }}
+                  to={link.to}
+                  end={link.to === '/'}
+                  className={({ isActive }) =>
+                    `flex items-center text-base font-semibold px-3 py-2 rounded-md transition-colors duration-200 ${
+                      isActive ? 'text-cyan-400' : 'text-white hover:text-cyan-300'
+                    }`
+                  }
+                  onClick={() => setMobileOpen(false)}
                 >
+                  {link.icon}
                   {link.label}
-                </motion.a>
+                </NavLink>
               ))}
             </nav>
+
             <motion.button
-              whileHover={{ scale: 1.07, boxShadow: '0 0 16px #22c55e' }}
-              whileTap={{ scale: 0.96 }}
-              className="mt-10 bg-gradient-to-r from-green-400 via-green-500 to-emerald-500 text-white px-6 py-3 rounded-lg shadow-lg font-semibold text-base focus:outline-none focus:ring-2 focus:ring-green-400 transition-all duration-300"
-              onClick={() => onNavigate && onNavigate('Contacts')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="mt-auto bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white px-5 py-3 rounded-lg font-semibold shadow-lg"
+              onClick={() => setMobileOpen(false)}
             >
-              Get In Touch
+              <Link to="/contacts">Get In Touch</Link>
             </motion.button>
           </motion.aside>
         )}
