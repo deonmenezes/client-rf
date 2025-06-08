@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const features = [
   {
@@ -184,13 +185,15 @@ INSTALLATION LLC. is a leading provider of integrated Mechanical, Hydraulic, Ele
           <p className="text-slate-300 mb-6 text-lg">
             Let's discuss how our engineering expertise can drive your business forward.
           </p>
-          <motion.button
-            className="px-8 py-4 rounded-2xl font-bold text-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 border border-cyan-400/50 backdrop-blur-sm"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Get Started Today
-          </motion.button>
+          <Link to="/contacts">
+            <motion.button
+              className="px-8 py-4 rounded-2xl font-bold text-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 border border-cyan-400/50 backdrop-blur-sm"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Get Started Today
+            </motion.button>
+          </Link>
         </motion.div>
       </motion.div>
 

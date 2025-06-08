@@ -93,26 +93,7 @@ export default function Footer() {
           </p>
           
           {/* Social Links */}
-          <div className="flex space-x-4 mt-6">
-            <motion.div 
-              className="w-8 h-8 bg-cyan-500/20 rounded-full flex items-center justify-center hover:bg-cyan-500/30 transition-colors cursor-pointer border border-cyan-400/30 backdrop-blur-sm"
-              whileHover={{ scale: 1.1 }}
-            >
-              <span className="text-cyan-400 text-sm">f</span>
-            </motion.div>
-            <motion.div 
-              className="w-8 h-8 bg-cyan-500/20 rounded-full flex items-center justify-center hover:bg-cyan-500/30 transition-colors cursor-pointer border border-cyan-400/30 backdrop-blur-sm"
-              whileHover={{ scale: 1.1 }}
-            >
-              <span className="text-cyan-400 text-sm">in</span>
-            </motion.div>
-            <motion.div 
-              className="w-8 h-8 bg-cyan-500/20 rounded-full flex items-center justify-center hover:bg-cyan-500/30 transition-colors cursor-pointer border border-cyan-400/30 backdrop-blur-sm"
-              whileHover={{ scale: 1.1 }}
-            >
-              <span className="text-cyan-400 text-sm">@</span>
-            </motion.div>
-          </div>
+         
         </motion.div>
 
         {/* Middle: Navigation Links */}

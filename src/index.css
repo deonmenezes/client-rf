@@ -6,3 +6,14 @@ body {
   overflow-x: hidden;
   overscroll-behavior-y: none;
 }
+
+/* Hide scrollbars for all elements (Webkit browsers) */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbars for Firefox */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

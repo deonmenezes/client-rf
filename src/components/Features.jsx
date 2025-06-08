@@ -91,7 +91,6 @@ export default function Features() {
   const [itemsPerView, setItemsPerView] = useState(3);
 
   useEffect(() => {
-    // Update items per view based on screen size
     const handleResize = () => {
       if (window.innerWidth < 640) {
         setItemsPerView(1);
@@ -102,27 +101,40 @@ export default function Features() {
       }
     };
 
-    handleResize(); // Set initial value
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  const maxSlides = Math.ceil(services.length / itemsPerView);
+
+  useEffect(() => {
+    if (currentIndex >= maxSlides) {
+      setCurrentIndex(0);
+    }
+  }, [itemsPerView, maxSlides]);
 
   useEffect(() => {
     if (!isAutoPlaying) return;
     
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % (services.length - itemsPerView + 1));
+      setCurrentIndex((prev) => (prev + 1) % maxSlides);
     }, 4000);
     
     return () => clearInterval(interval);
-  }, [isAutoPlaying, itemsPerView]);
+  }, [isAutoPlaying, maxSlides]);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % (services.length - itemsPerView + 1));
+    setCurrentIndex((prev) => (prev + 1) % maxSlides);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + services.length - itemsPerView + 1) % (services.length - itemsPerView + 1));
+    setCurrentIndex((prev) => (prev - 1 + maxSlides) % maxSlides);
+  };
+
+  const getVisibleServices = () => {
+    const startIndex = currentIndex * itemsPerView;
+    return services.slice(startIndex, startIndex + itemsPerView);
   };
 
   return (
@@ -230,7 +242,7 @@ export default function Features() {
             onClick={prevSlide}
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-all duration-300 hover:scale-110 hidden sm:block"
+            className="absolute left-2 sm:left-4 md:left-0 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-all duration-300 hover:scale-110"
           >
             <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -241,31 +253,35 @@ export default function Features() {
             onClick={nextSlide}
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-all duration-300 hover:scale-110 hidden sm:block"
+            className="absolute right-2 sm:right-4 md:right-0 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-all duration-300 hover:scale-110"
           >
             <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
 
-          {/* Carousel Track */}
-          <div className="overflow-hidden mx-0 sm:mx-12">
+          {/* Cards Container */}
+          <div className="px-8 sm:px-12 md:px-12">
             <motion.div
-              className="flex gap-4 sm:gap-6"
-              animate={{ 
-                x: `calc(${-currentIndex * (100 / itemsPerView)}% + ${currentIndex * 16}px)`
-              }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              key={currentIndex}
+              className={`grid gap-4 sm:gap-6 ${
+                itemsPerView === 1 ? 'grid-cols-1' : 
+                itemsPerView === 2 ? 'grid-cols-2' : 
+                'grid-cols-3'
+              }`}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
               onMouseEnter={() => setIsAutoPlaying(false)}
               onMouseLeave={() => setIsAutoPlaying(true)}
             >
-              {services.map((service, index) => (
+              {getVisibleServices().map((service, index) => (
                 <motion.div
-                  key={service.title}
-                  className={`flex-shrink-0 ${itemsPerView === 1 ? 'w-full' : itemsPerView === 2 ? 'w-1/2' : 'w-1/3'} px-2 sm:px-0 group`}
+                  key={`${currentIndex}-${index}`}
+                  className="group"
                   initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
                 >
                   <div className="relative h-[400px] sm:h-[450px] md:h-[500px] bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden hover:bg-white/10 transition-all duration-300 group-hover:scale-[1.02] sm:group-hover:scale-105 group-hover:shadow-lg sm:group-hover:shadow-2xl group-hover:shadow-cyan-500/20">
@@ -290,7 +306,7 @@ export default function Features() {
                       </motion.div>
 
                       {/* Title */}
-                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-cyan-300 transition-colors duration-300">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-cyan-300 transition-colors duration-300">
                         {service.title}
                       </h3>
 
@@ -315,29 +331,9 @@ export default function Features() {
             </motion.div>
           </div>
 
-          {/* Mobile Navigation Buttons */}
-          <div className="flex justify-center mt-6 sm:hidden gap-4">
-            <button
-              onClick={prevSlide}
-              className="p-2 rounded-full bg-white/10 backdrop-blur-sm border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-all duration-300"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              onClick={nextSlide}
-              className="p-2 rounded-full bg-white/10 backdrop-blur-sm border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-all duration-300"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-
           {/* Carousel Indicators */}
           <div className="flex justify-center mt-6 sm:mt-8 gap-2">
-            {Array.from({ length: Math.max(1, services.length - itemsPerView + 1) }).map((_, index) => (
+            {Array.from({ length: maxSlides }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
