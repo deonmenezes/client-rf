@@ -26,7 +26,7 @@ const cards = [
 export default function Services() {
   return (
     <motion.div
-      className="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 px-6 py-20 overflow-x-hidden text-white font-sans relative overflow-hidden"
+      className="bg-gradient-to-br from-blue-50 via-white to-blue-100 px-6 py-20 overflow-x-hidden text-gray-800 font-sans relative overflow-hidden"
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -34,13 +34,13 @@ export default function Services() {
     >
       {/* Subtle grid overlay */}
       <div className="absolute inset-0 pointer-events-none opacity-20 z-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10" />
         <div 
           className="absolute inset-0 opacity-30"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(6, 182, 212, 0.08) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(6, 182, 212, 0.08) 1px, transparent 1px)
+              linear-gradient(rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px)
             `,
             backgroundSize: '60px 60px'
           }}
@@ -64,7 +64,7 @@ export default function Services() {
           transition={{ delay: 0.2, duration: 0.7, type: 'spring', stiffness: 60 }}
         >
           <motion.p
-            className="text-cyan-400 font-bold uppercase tracking-wide mb-2"
+            className="text-blue-600 font-bold uppercase tracking-wide mb-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
@@ -72,7 +72,7 @@ export default function Services() {
             Our Expertise
           </motion.p>
           <motion.h2
-            className="text-4xl font-extrabold text-white leading-tight mb-2 drop-shadow-lg"
+            className="text-4xl font-extrabold text-gray-800 leading-tight mb-2 drop-shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.7 }}
@@ -86,7 +86,7 @@ export default function Services() {
           transition={{ delay: 0.5, duration: 0.7, type: 'spring', stiffness: 60 }}
         >
           <motion.p
-            className="text-lg font-semibold text-cyan-200 mb-4"
+            className="text-lg font-semibold text-blue-600 mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
@@ -95,7 +95,7 @@ export default function Services() {
             power management systems tailored for industries like EVs, agriculture, and solar.
           </motion.p>
           <motion.p
-            className="text-lg text-purple-200"
+            className="text-lg text-gray-600"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.6 }}
@@ -120,7 +120,7 @@ export default function Services() {
         {cards.map((card, i) => (
           <motion.div
             key={card.id}
-            className="relative bg-white/5 rounded-xl overflow-hidden shadow-xl hover:shadow-cyan-400/20 transition-shadow duration-300 flex flex-col border border-cyan-400/20 backdrop-blur-lg z-10"
+            className="relative bg-white/80 rounded-xl overflow-hidden shadow-xl hover:shadow-blue-400/20 transition-shadow duration-300 flex flex-col border border-blue-200/50 backdrop-blur-lg z-10"
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -128,7 +128,7 @@ export default function Services() {
             whileHover={{ scale: 1.02 }}
           >
             <motion.div
-              className="absolute top-6 left-6 text-cyan-400 text-5xl font-bold z-10"
+              className="absolute top-6 left-6 text-blue-600 text-5xl font-bold z-10"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -149,7 +149,7 @@ export default function Services() {
             </div>
             
             <motion.div
-              className="bg-gradient-to-r from-cyan-900 via-[#1e293b] to-purple-900 text-white p-4 flex justify-between items-center w-full"
+              className="bg-gradient-to-r from-blue-600 via-blue-700 to-cyan-600 text-white p-4 flex justify-between items-center w-full"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -157,7 +157,7 @@ export default function Services() {
             >
               <p className="text-lg font-bold">{card.title}</p>
               <motion.span
-                className="text-purple-400 text-2xl"
+                className="text-white text-2xl"
                 whileHover={{ rotate: 45 }}
                 transition={{ type: 'spring', stiffness: 120 }}
               >↗</motion.span>

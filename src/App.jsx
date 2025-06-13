@@ -26,7 +26,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="overflow-x-hidden min-h-screen w-full bg-gray-900 text-white">
+      <div className="overflow-x-hidden min-h-screen w-full bg-gradient-to-br from-blue-50 via-white to-blue-100 text-gray-800">
         <Navbar />
         <div className="pt-20">
           <Routes>

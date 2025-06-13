@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import iso from "../assets/iso.jpg"
+import iso2 from "../assets/iso2.jpg"
 
 const features = [
   {
@@ -30,7 +32,7 @@ const features = [
 export default function Gallery() {
   return (
     <motion.section
-      className="py-20 relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800"
+      className="py-20 relative bg-gradient-to-br from-blue-50 via-white to-blue-100"
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -38,13 +40,13 @@ export default function Gallery() {
     >
       {/* Dynamic Grid Background */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10" />
         <div 
           className="absolute inset-0 opacity-30"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px)
+              linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
             `,
             backgroundSize: '60px 60px'
           }}
@@ -53,7 +55,7 @@ export default function Gallery() {
 
       {/* Floating Geometric Elements */}
       <motion.div
-        className="absolute top-20 right-20 w-32 h-32 rounded-full bg-gradient-to-br from-cyan-400/20 to-blue-600/20 blur-xl"
+        className="absolute top-20 right-20 w-32 h-32 rounded-full bg-gradient-to-br from-blue-400/30 to-cyan-400/30 blur-xl"
         animate={{
           y: [0, -20, 0],
           x: [0, 10, 0],
@@ -66,7 +68,7 @@ export default function Gallery() {
         }}
       />
       <motion.div
-        className="absolute bottom-32 left-16 w-24 h-24 rounded-lg bg-gradient-to-br from-purple-500/20 to-pink-500/20 blur-lg rotate-45"
+        className="absolute bottom-32 left-16 w-24 h-24 rounded-lg bg-gradient-to-br from-cyan-400/30 to-blue-500/30 blur-lg rotate-45"
         animate={{
           y: [0, 15, 0],
           x: [0, -15, 0],
@@ -98,26 +100,26 @@ export default function Gallery() {
             transition={{ duration: 0.6 }}
             className="mb-8"
           >
-            <span className="inline-flex items-center px-6 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-cyan-500/10 to-blue-500/10 text-cyan-300 border border-cyan-500/20 backdrop-blur-sm">
-              <span className="w-2 h-2 bg-cyan-400 rounded-full mr-2 animate-pulse"></span>
+            <span className="inline-flex items-center px-6 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-blue-500/10 to-cyan-500/10 text-blue-700 border border-blue-500/20 backdrop-blur-sm">
+              <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
               How we work
             </span>
           </motion.div>
 
           <motion.h2
-            className="text-4xl md:text-5xl font-black mb-6 text-white"
+            className="text-4xl md:text-5xl font-black mb-6 text-gray-800"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.7 }}
           >
             Our{' '}
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-700 bg-clip-text text-transparent">
               Key Features
             </span>
           </motion.h2>
 
           <motion.p
-            className="text-slate-300 text-lg md:text-xl max-w-3xl mx-auto"
+            className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
@@ -131,7 +133,7 @@ export default function Gallery() {
           {features.map((feature, i) => (
             <motion.div
               key={feature.id}
-              className="group relative h-80 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20"
+              className="group relative h-80 bg-white/80 backdrop-blur-sm rounded-2xl border border-blue-200/50 overflow-hidden hover:bg-white hover:shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -139,11 +141,11 @@ export default function Gallery() {
               whileHover={{ y: -10 }}
             >
               {/* Gradient Border Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-purple-400/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl"></div>
               
               {/* Feature Number Background */}
               <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
-                <div className="text-8xl font-black bg-gradient-to-br from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                <div className="text-8xl font-black bg-gradient-to-br from-blue-600 to-cyan-600 bg-clip-text text-transparent">
                   {feature.id}
                 </div>
               </div>
@@ -154,7 +156,7 @@ export default function Gallery() {
                 <div>
                   {/* Decorative Icon */}
                   <motion.div
-                    className="inline-flex items-center justify-center w-12 h-12 bg-cyan-500/20 rounded-xl border border-cyan-400/30 text-cyan-300 mb-6 backdrop-blur-sm group-hover:bg-cyan-500/30 group-hover:scale-110 transition-all duration-300"
+                    className="inline-flex items-center justify-center w-12 h-12 bg-blue-500/20 rounded-xl border border-blue-400/30 text-blue-600 mb-6 backdrop-blur-sm group-hover:bg-blue-500/30 group-hover:scale-110 transition-all duration-300"
                     whileHover={{ rotate: 10 }}
                   >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -163,12 +165,12 @@ export default function Gallery() {
                   </motion.div>
 
                   {/* Title */}
-                  <h3 className="text-xl font-bold text-white mb-4 group-hover:text-cyan-300 transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-blue-600 transition-colors duration-300">
                     {feature.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-slate-300 leading-relaxed text-sm group-hover:text-white transition-colors duration-300">
+                  <p className="text-gray-600 leading-relaxed text-sm group-hover:text-gray-700 transition-colors duration-300">
                     {feature.description}
                   </p>
                 </div>
@@ -177,14 +179,14 @@ export default function Gallery() {
                 <div className="flex items-center justify-between">
                   {/* Accent Line */}
                   <motion.div 
-                    className="h-1 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full transition-all duration-300"
+                    className="h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full transition-all duration-300"
                     initial={{ width: "24px" }}
                     whileHover={{ width: "48px" }}
                   />
 
                   {/* Arrow Icon */}
                   <motion.div
-                    className="w-8 h-8 flex items-center justify-center rounded-full bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 group-hover:bg-cyan-500 group-hover:text-white transition-all duration-300"
+                    className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-600 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300"
                     whileHover={{ scale: 1.2, rotate: 45 }}
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -210,7 +212,7 @@ export default function Gallery() {
               {features.map((feature, i) => (
                 <motion.div
                   key={feature.id}
-                  className="w-80 sm:w-96 flex-shrink-0 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/20"
+                  className="w-80 sm:w-96 flex-shrink-0 bg-white/80 backdrop-blur-sm border border-blue-200/50 rounded-2xl p-8 hover:bg-white hover:shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -218,23 +220,23 @@ export default function Gallery() {
                 >
                   {/* Feature Number */}
                   <div className="mb-6 relative">
-                    <div className="text-6xl sm:text-7xl font-black bg-gradient-to-br from-cyan-400 to-purple-500 bg-clip-text text-transparent opacity-25">
+                    <div className="text-6xl sm:text-7xl font-black bg-gradient-to-br from-blue-600 to-cyan-600 bg-clip-text text-transparent opacity-25">
                       {feature.id}
                     </div>
                   </div>
 
                   {/* Content */}
                   <div className="mb-6">
-                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">
                       {feature.title}
                     </h3>
-                    <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
+                    <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
                       {feature.description}
                     </p>
                   </div>
 
                   {/* Bottom accent */}
-                  <div className="w-12 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full"></div>
+                  <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"></div>
                 </motion.div>
               ))}
             </div>
@@ -246,18 +248,99 @@ export default function Gallery() {
               {features.map((_, i) => (
                 <motion.div 
                   key={i} 
-                  className="w-2 h-2 bg-cyan-400/30 rounded-full"
-                  whileHover={{ scale: 1.5, backgroundColor: "rgba(6, 182, 212, 0.8)" }}
+                  className="w-2 h-2 bg-blue-400/30 rounded-full"
+                  whileHover={{ scale: 1.5, backgroundColor: "rgba(59, 130, 246, 0.8)" }}
                 />
               ))}
             </div>
           </div>
         </div>
+
+        {/* ISO Certification Section */}
+        <motion.div
+          className="mt-20"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, type: 'spring', stiffness: 60 }}
+        >
+          {/* Section Header */}
+          <motion.div
+            className="text-center mb-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.18 } },
+            }}
+          >
+            <motion.h3
+              className="text-3xl md:text-4xl font-black mb-4 text-gray-800"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.7 }}
+            >
+              We are{' '}
+              <span className="bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-700 bg-clip-text text-transparent">
+                ISO Certified
+              </span>
+              {' '}- 9001 & 14001
+            </motion.h3>
+          </motion.div>
+
+          {/* ISO Certificates Grid */}
+          <div className="grid gap-8 max-w-6xl mx-auto">
+            {/* ISO 9001 Certificate */}
+            <motion.div
+              className="group relative bg-white/80 backdrop-blur-sm rounded-2xl border border-blue-200/50 overflow-hidden hover:bg-white hover:shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              whileHover={{ y: -5 }}
+            >
+              {/* Gradient Border Effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl"></div>
+              
+              <div className="relative z-10 p-8">
+                {/* Certificate Image */}
+                <img 
+                  src={iso} 
+                  alt="ISO 9001:2015 Certificate" 
+                  className="w-full h-80 object-cover rounded-xl"
+                />
+              </div>
+            </motion.div>
+
+            {/* ISO 14001 Certificate */}
+            <motion.div
+              className="group relative bg-white/80 backdrop-blur-sm rounded-2xl border border-blue-200/50 overflow-hidden hover:bg-white hover:shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              whileHover={{ y: -5 }}
+            >
+              {/* Gradient Border Effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl"></div>
+              
+              <div className="relative z-10 p-8">
+                {/* Certificate Image */}
+                <img 
+                  src={iso2} 
+                  alt="ISO 14001:2015 Certificate" 
+                  className="w-full h-80 object-cover rounded-xl"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
 
       {/* Animated Gradient Orbs */}
       <motion.div
-        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 blur-3xl"
+        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 blur-3xl"
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.5, 0.3]
@@ -269,7 +352,7 @@ export default function Gallery() {
         }}
       />
       <motion.div
-        className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 blur-3xl"
+        className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 blur-3xl"
         animate={{
           scale: [1, 1.3, 1],
           opacity: [0.2, 0.4, 0.2]

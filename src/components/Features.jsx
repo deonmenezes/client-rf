@@ -139,7 +139,7 @@ export default function Features() {
 
   return (
     <motion.section
-      className="py-12 md:py-20 relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800"
+      className="py-12 md:py-20 relative bg-gradient-to-br from-blue-50 via-white to-blue-100"
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -147,13 +147,13 @@ export default function Features() {
     >
       {/* Dynamic Grid Background */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10" />
         <div 
           className="absolute inset-0 opacity-30"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px)
+              linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
             `,
             backgroundSize: '60px 60px'
           }}
@@ -162,7 +162,7 @@ export default function Features() {
 
       {/* Floating Geometric Elements */}
       <motion.div
-        className="absolute top-20 right-20 w-32 h-32 rounded-full bg-gradient-to-br from-cyan-400/20 to-blue-600/20 blur-xl hidden md:block"
+        className="absolute top-20 right-20 w-32 h-32 rounded-full bg-gradient-to-br from-blue-400/30 to-cyan-400/30 blur-xl hidden md:block"
         animate={{
           y: [0, -20, 0],
           x: [0, 10, 0],
@@ -175,7 +175,7 @@ export default function Features() {
         }}
       />
       <motion.div
-        className="absolute bottom-32 left-16 w-24 h-24 rounded-lg bg-gradient-to-br from-purple-500/20 to-pink-500/20 blur-lg rotate-45 hidden md:block"
+        className="absolute bottom-32 left-16 w-24 h-24 rounded-lg bg-gradient-to-br from-cyan-400/30 to-blue-500/30 blur-lg rotate-45 hidden md:block"
         animate={{
           y: [0, 15, 0],
           x: [0, -15, 0],
@@ -207,26 +207,26 @@ export default function Features() {
             transition={{ duration: 0.6 }}
             className="mb-6 md:mb-8"
           >
-            <span className="inline-flex items-center px-4 py-1 md:px-6 md:py-2 rounded-full text-xs md:text-sm font-medium bg-gradient-to-r from-cyan-500/10 to-blue-500/10 text-cyan-300 border border-cyan-500/20 backdrop-blur-sm">
-              <span className="w-2 h-2 bg-cyan-400 rounded-full mr-2 animate-pulse"></span>
+            <span className="inline-flex items-center px-4 py-1 md:px-6 md:py-2 rounded-full text-xs md:text-sm font-medium bg-gradient-to-r from-blue-500/10 to-cyan-500/10 text-blue-700 border border-blue-500/20 backdrop-blur-sm">
+              <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
               Our Services
             </span>
           </motion.div>
 
           <motion.h2
-            className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 md:mb-6 text-white"
+            className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 md:mb-6 text-gray-800"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.7 }}
           >
             We provide{' '}
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-700 bg-clip-text text-transparent">
               Engineering Excellence
             </span>
           </motion.h2>
 
           <motion.p
-            className="text-slate-300 text-base sm:text-lg md:text-xl max-w-3xl mx-auto px-2"
+            className="text-gray-600 text-base sm:text-lg md:text-xl max-w-3xl mx-auto px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
@@ -242,7 +242,7 @@ export default function Features() {
             onClick={prevSlide}
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
-            className="absolute left-2 sm:left-4 md:left-0 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-all duration-300 hover:scale-110"
+            className="absolute left-2 sm:left-4 md:left-0 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-white/80 backdrop-blur-sm border border-blue-500/30 text-blue-600 hover:bg-blue-500/20 hover:text-white transition-all duration-300 hover:scale-110"
           >
             <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -253,7 +253,7 @@ export default function Features() {
             onClick={nextSlide}
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
-            className="absolute right-2 sm:right-4 md:right-0 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-all duration-300 hover:scale-110"
+            className="absolute right-2 sm:right-4 md:right-0 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-white/80 backdrop-blur-sm border border-blue-500/30 text-blue-600 hover:bg-blue-500/20 hover:text-white transition-all duration-300 hover:scale-110"
           >
             <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -284,7 +284,7 @@ export default function Features() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
                 >
-                  <div className="relative h-[400px] sm:h-[450px] md:h-[500px] bg-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/10 overflow-hidden hover:bg-white/10 transition-all duration-300 group-hover:scale-[1.02] sm:group-hover:scale-105 group-hover:shadow-lg sm:group-hover:shadow-2xl group-hover:shadow-cyan-500/20">
+                  <div className="relative h-[400px] sm:h-[450px] md:h-[500px] bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-blue-200/50 overflow-hidden hover:bg-white hover:shadow-lg transition-all duration-300 group-hover:scale-[1.02] sm:group-hover:scale-105 group-hover:shadow-lg sm:group-hover:shadow-2xl group-hover:shadow-blue-500/20">
                     {/* Background Image */}
                     <div className="absolute inset-0">
                       <img
@@ -292,32 +292,32 @@ export default function Features() {
                         alt={service.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent" />
                     </div>
 
                     {/* Content */}
                     <div className="relative z-10 h-full flex flex-col justify-end p-4 sm:p-6">
                       {/* Icon */}
                       <motion.div
-                        className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-cyan-500/20 rounded-lg sm:rounded-xl border border-cyan-400/30 text-cyan-300 mb-3 sm:mb-4 backdrop-blur-sm group-hover:bg-cyan-500/30 group-hover:scale-110 transition-all duration-300"
+                        className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-blue-500/20 rounded-lg sm:rounded-xl border border-blue-400/30 text-blue-600 mb-3 sm:mb-4 backdrop-blur-sm group-hover:bg-blue-500/30 group-hover:scale-110 transition-all duration-300"
                         whileHover={{ rotate: 10 }}
                       >
                         {service.icon}
                       </motion.div>
 
                       {/* Title */}
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-cyan-300 transition-colors duration-300">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-blue-300 transition-colors duration-300">
                         {service.title}
                       </h3>
 
                       {/* Description */}
-                      <p className="text-slate-300 text-sm sm:text-base leading-relaxed group-hover:text-white transition-colors duration-300">
+                      <p className="text-gray-200 text-sm sm:text-base leading-relaxed group-hover:text-white transition-colors duration-300">
                         {service.description}
                       </p>
 
                       {/* Arrow */}
                       <motion.div
-                        className="mt-3 sm:mt-4 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 group-hover:bg-cyan-500 group-hover:text-white transition-all duration-300"
+                        className="mt-3 sm:mt-4 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300"
                         whileHover={{ scale: 1.2, rotate: 45 }}
                       >
                         <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -339,8 +339,8 @@ export default function Features() {
                 onClick={() => setCurrentIndex(index)}
                 className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex 
-                    ? 'bg-cyan-400 scale-125' 
-                    : 'bg-white/30 hover:bg-white/50'
+                    ? 'bg-blue-500 scale-125' 
+                    : 'bg-blue-400/30 hover:bg-blue-400/50'
                 }`}
               />
             ))}

@@ -68,7 +68,7 @@ const Chatbot = () => {
     <>
       {/* Floating Button */}
       <motion.button
-        className="fixed bottom-6 right-6 z-40 bg-gradient-to-br from-cyan-400 to-purple-500 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all"
+        className="fixed bottom-6 right-6 z-40 bg-gradient-to-br from-blue-600 to-cyan-600 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setOpen(true)}
@@ -85,12 +85,12 @@ const Chatbot = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 80 }}
             transition={{ type: 'spring', stiffness: 80, damping: 18 }}
-            className="fixed right-6 bottom-6 top-24 w-[90vw] max-w-sm bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl shadow-2xl border border-cyan-400/20 z-40 flex flex-col overflow-hidden"
+            className="fixed right-6 bottom-6 top-24 w-[90vw] max-w-sm bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-2xl border border-blue-200/50 z-40 flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border-b border-cyan-400/10">
-              <span className="font-bold text-white text-lg">Ask Your Queries</span>
-              <button onClick={() => setOpen(false)} className="text-cyan-300 hover:text-pink-400 transition-colors">
+            <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border-b border-blue-400/30">
+              <span className="font-bold text-gray-800 text-lg">Ask Your Queries</span>
+              <button onClick={() => setOpen(false)} className="text-blue-600 hover:text-blue-800 transition-colors">
                 <X className="w-6 h-6" />
               </button>
             </div>
@@ -99,7 +99,7 @@ const Chatbot = () => {
             <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
               {messages.map((msg, i) => (
                 <div key={i} className={`flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`rounded-xl px-4 py-2 max-w-[80%] text-sm shadow-md ${msg.from === 'user' ? 'bg-cyan-500 text-white' : 'bg-white/10 text-white border border-cyan-400/10'}`}>
+                  <div className={`rounded-xl px-4 py-2 max-w-[80%] text-sm shadow-md ${msg.from === 'user' ? 'bg-blue-600 text-white' : 'bg-white/80 text-gray-800 border border-blue-200/50'}`}>
                     {msg.text}
                   </div>
                 </div>
@@ -108,10 +108,10 @@ const Chatbot = () => {
             </div>
 
             {/* Input */}
-            <form onSubmit={handleSend} className="flex items-center gap-2 px-4 py-3 border-t border-cyan-400/10 bg-slate-900/80">
+            <form onSubmit={handleSend} className="flex items-center gap-2 px-4 py-3 border-t border-blue-200/50 bg-white/80">
               <input
                 type="text"
-                className="flex-1 bg-transparent text-white placeholder-cyan-200 px-3 py-2 rounded-lg border border-cyan-400/20 focus:outline-none focus:border-cyan-400"
+                className="flex-1 bg-transparent text-gray-800 placeholder-gray-500 px-3 py-2 rounded-lg border border-blue-300/50 focus:outline-none focus:border-blue-500"
                 placeholder="Type your message..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -119,7 +119,7 @@ const Chatbot = () => {
               />
               <button
                 type="submit"
-                className="bg-gradient-to-r from-cyan-400 to-purple-500 text-white px-4 py-2 rounded-lg shadow hover:from-cyan-500 hover:to-purple-600 transition-all disabled:opacity-60"
+                className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-4 py-2 rounded-lg shadow hover:from-blue-700 hover:to-cyan-700 transition-all disabled:opacity-60"
                 disabled={loading || !input.trim()}
                 aria-label="Send"
               >
