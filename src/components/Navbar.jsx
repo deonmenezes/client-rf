@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Menu, X, Home, Wrench, Briefcase, FileText, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, NavLink } from 'react-router-dom';
-import logo from "../assets/logo69.jpg";
+import logo from "../assets/logo.jpg";
 
 const navLinks = [
   { label: 'Home', to: '/', icon: <Home className="w-5 h-5 mr-2" /> },
@@ -35,7 +35,7 @@ const Navbar = () => {
       initial="hidden"
       animate="visible"
       variants={navVariants}
-      className="w-full h-20 fixed top-0 left-0 z-50 bg-blue-900/95 backdrop-blur-xl border-b border-blue-400/20 shadow-lg flex items-center justify-between px-4 md:px-12 font-manrope"
+      className="w-full h-24 fixed top-0 left-0 z-50 bg-blue-900/95 backdrop-blur-xl border-b border-blue-400/20 shadow-lg flex items-center justify-between px-4 md:px-12 font-manrope"
     >
       {/* Logo & Company Title */}
       <div className="flex items-center gap-4 z-50 relative">
@@ -52,7 +52,7 @@ const Navbar = () => {
           className="cursor-pointer"
         >
           <Link to="/">
-            <img src={logo} alt="Logo" className="w-12 h-12 rounded-xl shadow-lg" />
+            <img src={logo} alt="Logo" className="w-20 h-20 rounded-sm object-fill shadow-lg" />
           </Link>
         </motion.div>
         
@@ -62,11 +62,11 @@ const Navbar = () => {
             <span className="text-white font-bold text-xs sm:text-sm lg:text-base leading-tight truncate">
               ROPA FIESTA
             </span>
-            <span className="text-blue-300 font-semibold text-xs leading-tight hidden sm:block truncate">
+            <span className="text-blue-300 font-semibold text-xs leading-tight sm:block truncate">
               ELECTRICAL & MECHANICAL
             </span>
-            <span className="text-blue-200 font-medium text-xs leading-tight hidden lg:block truncate">
-              EQUIPMENT INSTALLATION LLC
+            <span className="text-blue-200 font-medium text-xs leading-tight lg:block truncate">
+           EQUIPMENT INSTALLATION LLC.
             </span>
           </Link>
         </div>

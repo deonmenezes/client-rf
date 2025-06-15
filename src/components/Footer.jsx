@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
-import logo from "../assets/logo69.jpg"
+import logo from "../assets/logo.jpg"
 
 export default function Footer() {
   return (
@@ -76,7 +76,7 @@ export default function Footer() {
             <img
               src={logo}
               alt="RF Electromech Services Logo"
-              className="h-16 w-16 rounded-lg shadow-lg"
+              className="h-20 w-20 rounded-sm shadow-lg"
             />
             <div>
               <h2 className="text-xl font-bold text-white">
