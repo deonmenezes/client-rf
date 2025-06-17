@@ -1,11 +1,20 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
+import img1 from "../assets/rf2.jpg"
+import img2 from "../assets/rf3.jpg"
+import img3 from "../assets/rf4.jpg"
+import img4 from "../assets/rf5.jpg"
+import img5 from "../assets/rf6.jpg"
+import img6 from "../assets/rf7.jpg"
+import img7 from "../assets/rf8.jpg"
+import img8 from "../assets/rf9.jpg"
+
 const services = [
   {
     title: "Electrical Services",
     description: "Comprehensive industrial and commercial electrical installations, troubleshooting, and energy-efficient upgrades.",
-    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    image:img6,
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -15,7 +24,7 @@ const services = [
   {
     title: "Mechanical Services",
     description: "Precision mechanical repair, maintenance, and system assembly for manufacturing and processing industries.",
-    image: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    image: img4,
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -26,7 +35,7 @@ const services = [
   {
     title: "Automation & Retrofitting",
     description: "Upgrading legacy systems with smart PLC, SCADA, and control panel automation for enhanced productivity.",
-    image: "https://media.gettyimages.com/id/1435409342/photo/robot-workers-in-factory.jpg?s=612x612&w=gi&k=20&c=gQSO1lyRIybdxtBJSOeO9fR3vD7iCQ1Y1O9CBePuF3g=",
+    image:img7,
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
@@ -36,7 +45,7 @@ const services = [
   {
     title: "Fabrication & Welding",
     description: "Custom metal fabrication and high-quality welding solutions tailored for industrial and structural needs.",
-    image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    image:img5,
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
@@ -46,7 +55,7 @@ const services = [
   {
     title: "Hydraulic Experts",
     description: "Design, maintenance, and integration of advanced hydraulic systems across multiple applications.",
-    image: "https://media.istockphoto.com/id/1180187285/photo/low-key-photo-of-hydraulic-pipes-maintenance-on-heavy-industry-machine.jpg?s=170667a&w=is&k=20&c=4SP1BF7VWjN8nS-UX8_KuUVSj5cbNxYeYAM0S66LS2w=",
+    image: img3,
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
@@ -56,7 +65,7 @@ const services = [
   {
     title: "Machining",
     description: "High-precision CNC and manual machining services for components across diverse engineering sectors.",
-    image: "https://www.shutterstock.com/image-photo/metal-machine-tools-industry-cnc-260nw-1772384783.jpg",
+    image: img8,
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a1 1 0 01-1-1V9a1 1 0 011-1h1a2 2 0 100-4H4a1 1 0 01-1-1V4a1 1 0 011-1h3a1 1 0 001-1v-1a2 2 0 114 0z" />

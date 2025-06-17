@@ -66,7 +66,7 @@ const Navbar = () => {
               ELECTRICAL & MECHANICAL
             </span>
             <span className="text-blue-200 font-medium text-xs leading-tight lg:block truncate">
-           EQUIPMENT INSTALLATION LLC.
+           EQUIPMENT INSTALLATION LLC.
             </span>
           </Link>
         </div>

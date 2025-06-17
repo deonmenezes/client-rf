@@ -2,6 +2,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import engimg from "../assets/engineering.jpg";
 import { useEffect } from 'react';
+import hero from "../assets/rf1jpg.jpg"
 
 export default function Hero() {
   const controls = useAnimation();
@@ -229,7 +230,7 @@ export default function Hero() {
           className="md:w-1/2"
         >
           <img
-            src={engimg}
+            src={hero}
             alt="Engineering Visual"
             className="w-full h-[300px] md:h-[400px] object-cover rounded-xl shadow-lg border border-gray-700"
           />
