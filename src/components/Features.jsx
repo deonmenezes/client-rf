@@ -22,7 +22,7 @@ const services = [
     )
   },
   {
-    title: "Mechanical Services",
+    title: "Fabrication Services",
     description: "Precision mechanical repair, maintenance, and system assembly for manufacturing and processing industries.",
     image: img4,
     icon: (
@@ -33,7 +33,7 @@ const services = [
     )
   },
   {
-    title: "Automation & Retrofitting",
+    title: "Hydraulic Services",
     description: "Upgrading legacy systems with smart PLC, SCADA, and control panel automation for enhanced productivity.",
     image:img7,
     icon: (
@@ -43,7 +43,7 @@ const services = [
     )
   },
   {
-    title: "Fabrication & Welding",
+    title: "Automation and retrofitting",
     description: "Custom metal fabrication and high-quality welding solutions tailored for industrial and structural needs.",
     image:img5,
     icon: (
@@ -53,7 +53,7 @@ const services = [
     )
   },
   {
-    title: "Hydraulic Experts",
+    title: "Pneumatic system manufacturing and service",
     description: "Design, maintenance, and integration of advanced hydraulic systems across multiple applications.",
     image: img3,
     icon: (
@@ -62,16 +62,7 @@ const services = [
       </svg>
     )
   },
-  {
-    title: "Machining",
-    description: "High-precision CNC and manual machining services for components across diverse engineering sectors.",
-    image: img8,
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a1 1 0 01-1-1V9a1 1 0 011-1h1a2 2 0 100-4H4a1 1 0 01-1-1V4a1 1 0 011-1h3a1 1 0 001-1v-1a2 2 0 114 0z" />
-      </svg>
-    )
-  },
+  
   {
     title: "Trading & Manufacturing Parts",
     description: "Supply of quality engineering parts, spares, and equipment with custom manufacturing support.",
@@ -83,7 +74,7 @@ const services = [
     )
   },
   {
-    title: "Dealership – Himalaya AC & More",
+    title: "Machining service",
     description: "Authorized dealer of Himalaya Air Conditioners, Industrial Spray Systems, and Welding Solutions.",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
     icon: (

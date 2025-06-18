@@ -73,7 +73,7 @@ const Navbar = () => {
       </div>
 
       {/* Centered Navigation Bar */}
-      <div className="hidden md:flex justify-center items-center absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-full px-4">
+      <div className="hidden md:flex justify-center items-center absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-full px-4 ml-14">
         <div className="flex items-center gap-2 w-full max-w-[820px] bg-blue-800/80 backdrop-blur-lg border border-blue-400/30 rounded-full px-4 py-2 shadow-md justify-between">
           <div className="flex gap-1">
             {navLinks.slice(0, -1).map((link, i) => (
