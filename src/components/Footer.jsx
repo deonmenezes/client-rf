@@ -159,8 +159,8 @@ export default function Footer() {
             <div className="mb-4">
               <h4 className="text-sm font-semibold text-blue-200 mb-2">Address</h4>
               <p className="text-blue-300 text-sm leading-6">
-                Shop 5 - M37<br />
-                Abu Dhabi, UAE
+              workshop 64, Musaffah M3<br />
+                Abu Dhabi,United Arab Emirate
               </p>
             </div>
 

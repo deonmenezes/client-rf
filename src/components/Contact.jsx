@@ -61,8 +61,9 @@ const Contact = () => {
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }}>
               <h3 className="text-xl font-bold text-blue-600">Abu Dhabi, UAE</h3>
               <p className="text-gray-600 leading-7">
-                Shop 5 - M37,<br />
-                Abu Dhabi, UAE
+              workshop 64, Musaffah M3 
+<br />
+                Abu Dhabi, United Arab Emirate
               </p>
             </motion.div>
 
