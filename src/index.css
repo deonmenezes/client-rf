@@ -2,18 +2,123 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ultra-fast loading optimizations */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-display: swap;
+}
+
 body {
   overflow-x: hidden;
   overscroll-behavior-y: none;
+  font-display: swap;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #ffffff;
+  color: #171717;
 }
 
-/* Hide scrollbars for all elements (Webkit browsers) */
+/* Hide scrollbars for cleaner look */
 *::-webkit-scrollbar {
   display: none;
 }
 
-/* Hide scrollbars for Firefox */
 * {
   scrollbar-width: none;
   -ms-overflow-style: none;
+}
+
+/* Preload critical fonts */
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+  src: local('Inter');
+}
+
+/* Reduce motion for better performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Critical CSS for instant loading */
+.hero-section {
+  min-height: 70vh;
+  background: #ffffff;
+}
+
+/* Optimize image loading */
+img {
+  content-visibility: auto;
+  contain-intrinsic-size: 300px 200px;
+  loading: lazy;
+  will-change: transform;
+}
+
+/* Performance improvements */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* GPU acceleration for smooth scrolling */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Minimize layout shifts */
+.aspect-ratio-16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-ratio-4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+/* Ultra-fast animations */
+@keyframes fadeInUltraFast {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in-ultra-fast {
+  animation: fadeInUltraFast 0.15s ease-out;
+}
+
+/* Intersection Observer optimizations */
+.lazy-load {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.lazy-load.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Minimize repaints and reflows */
+.optimized-section {
+  contain: layout style paint;
+}
+
+/* Smooth scrolling performance */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
