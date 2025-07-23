@@ -1,15 +1,34 @@
 import { motion, useAnimation } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import engimg from "../assets/engineering.jpg";
-import { useEffect } from 'react';
-import hero from "../assets/rf1jpg.jpg"
+import { useState, useEffect } from 'react';
+
+// === STEP 1: IMPORT YOUR NEW IMAGES HERE ===
+import myNewSlide1 from "../assets/unnamed.jpg";
+import myNewSlide2 from "../assets/unnamedd.jpg";
+import finalSlide4 from "../assets/unnames.jpeg";
+// Add more imports here if you have more new images
+
+// === STEP 2: DEFINE YOUR SLIDER IMAGES ARRAY WITH ONLY YOUR NEW IMAGES ===
+const backgroundSliderImages = [
+  myNewSlide1,
+  myNewSlide2,
+  finalSlide4,
+  // Add the variables for any other new images you imported above
+];
+
+// Define animation variants for the background image transitions
+const bgImageVariants = {
+  enter: { opacity: 0 },
+  center: { opacity: 1 },
+  exit: { opacity: 0 },
+};
 
 export default function Hero() {
-  const controls = useAnimation();
-  const backgroundControls = useAnimation();
+  const controls = useAnimation(); // For industrial grid pulse
+  const [currentBgImageIndex, setCurrentBgImageIndex] = useState(0);
 
   useEffect(() => {
-    // Industrial grid pulse animation
+    // Industrial grid pulse animation (your existing animation)
     controls.start({
       opacity: [0.1, 0.3, 0.1],
       scale: [1, 1.05, 1],
@@ -20,14 +39,21 @@ export default function Hero() {
         repeatType: 'reverse',
       },
     });
+
+    // Auto-play for the background image slider
+    const interval = setInterval(() => {
+      setCurrentBgImageIndex((prevIndex) => (prevIndex + 1) % backgroundSliderImages.length);
+    }, 6000); // Change image every 6 seconds (adjust as needed)
+
+    return () => clearInterval(interval); // Clean up the interval on unmount
   }, [controls]);
 
   const backgroundVariants = {
     rest: { 
-      background: 'linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #dbeafe 100%)',
+      background: 'transparent',
     },
     hover: {
-      background: 'linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #dbeafe 100%)',
+      background: 'transparent',
     }
   };
 
@@ -83,18 +109,43 @@ export default function Hero() {
 
   return (
     <motion.section
-      className="relative text-gray-800 py-20 px-6 md:px-16"
+      className="relative text-gray-800 py-20 px-6 md:px-16 overflow-hidden"
+      style={{
+        transformOrigin: 'center center',
+        minHeight: '70vh',
+        display: 'flex',
+        alignItems: 'center',
+        position: 'relative',
+      }}
       initial="rest"
       whileHover="hover"
       animate="rest"
       variants={backgroundVariants}
-      style={{
-        transformOrigin: 'center center',
-      }}
     >
-      {/* Industrial Grid Pattern */}
+      {/* BACKGROUND IMAGE SLIDER CONTAINER */}
+      <div className="absolute inset-0 z-0">
+        {backgroundSliderImages.map((image, index) => (
+          <motion.img
+            key={index}
+            src={image}
+            alt={`Background Slider Image ${index + 1}`}
+            className="w-full h-full object-cover"
+            initial="enter"
+            animate={currentBgImageIndex === index ? "center" : "exit"}
+            variants={bgImageVariants}
+            transition={{ duration: 1.5, ease: 'easeInOut' }}
+            style={{ position: 'absolute' }}
+          />
+        ))}
+        {/* Semi-transparent overlay for better text readability */}
+        {/* --- */}
+        <div className="absolute inset-0 bg-black opacity-60"></div> {/* Increased opacity from 40 to 60 */}
+        {/* --- */}
+      </div>
+
+      {/* INDUSTRIAL GRID PATTERN (Z-INDEX 1) */}
       <motion.div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none z-10"
         variants={gridVariants}
         style={{
           backgroundImage: `
@@ -105,9 +156,9 @@ export default function Hero() {
         }}
       />
 
-      {/* Circuit Board Pattern */}
+      {/* CIRCUIT BOARD PATTERN (Z-INDEX 2) */}
       <motion.div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none z-20"
         variants={circuitVariants}
       >
         <div className="absolute top-20 left-20 w-32 h-px bg-blue-400/30"></div>
@@ -135,9 +186,9 @@ export default function Hero() {
         <div className="absolute bottom-40 right-10 w-px h-18 bg-blue-200/25"></div>
       </motion.div>
 
-      {/* Mechanical Gears */}
+      {/* MECHANICAL GEARS (Z-INDEX 3) */}
       <motion.div
-        className="absolute inset-0 pointer-events-none overflow-hidden"
+        className="absolute inset-0 pointer-events-none overflow-hidden z-30"
         variants={gearsVariants}
       >
         {/* Large gear - top right */}
@@ -181,28 +232,29 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+      {/* Main Content: Text and Your Original Static Image (Z-INDEX 4) */}
+      <div className="relative z-40 max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-12 text-white">
         {/* Text Content */}
         <motion.div
           initial={{ opacity: 0, x: -60 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
           className="md:w-1/2 text-center md:text-left"
         >
           <span className="inline-block bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-medium mb-6 skew-hover">
             Available for Work
           </span>
 
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6 skew-hover text-gray-800">
+          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6 skew-hover">
             We deliver advanced{' '}
-            <span className="text-blue-600 skew-hover inline-block">
+            <span className="text-blue-300 skew-hover inline-block">
               engineering, automation, and energy solutions
             </span>
           </h1>
 
-          <p className="text-lg text-gray-600 mb-8 skew-hover">
+          <p className="text-lg text-gray-200 mb-8 skew-hover">
             tailored for the world's most demanding industries.{' '}
-            <span className="text-blue-600 font-medium skew-hover">
+            <span className="text-blue-300 font-medium skew-hover">
               Innovation, reliability, and performance
             </span>{' '}
             —engineered for your success.
@@ -215,26 +267,29 @@ export default function Hero() {
               </button>
             </Link>
             <Link to="/projects">
-              <button className="border border-blue-400 hover:border-blue-600 px-6 py-2 rounded-full font-medium skew-hover text-gray-700 hover:text-blue-600">
+              <button className="border border-blue-400 hover:border-blue-600 px-6 py-2 rounded-full font-medium skew-hover text-gray-100 hover:text-blue-300">
                 Our Work
               </button>
             </Link>
           </div>
         </motion.div>
 
-        {/* Image */}
-        <motion.div
+        {/* Your original static image (rf1jpg.jpg).
+             Since it's commented out, it won't be rendered. If you want a static image here,
+             uncomment this block and ensure the 'hero' import is present at the top.
+        */}
+        {/* <motion.div
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.7, delay: 0.7 }}
           className="md:w-1/2"
         >
           <img
-            src={hero}
+            src={hero} // This 'hero' import (which is rf1jpg.jpg) is used HERE
             alt="Engineering Visual"
             className="w-full h-[300px] md:h-[400px] object-cover rounded-xl shadow-lg border border-gray-700"
           />
-        </motion.div>
+        </motion.div> */}
       </div>
 
       {/* Enhanced Technical Hover Style */}
