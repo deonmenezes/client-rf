@@ -122,3 +122,24 @@ img {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
+
+/* Mobile optimization classes */
+.mobile-optimized .motion-reduce {
+  transition-duration: 0.15s !important;
+}
+
+/* Animation triggers faster on mobile */
+@media (max-width: 767px) {
+  [data-animate] {
+    transform: translateY(10px) !important; /* Smaller transforms on mobile */
+  }
+  
+  .will-change-transform {
+    transform: translate3d(0, 0, 0); /* Force GPU rendering */
+  }
+  
+  /* Faster animations on mobile */
+  .motion-safe {
+    transition-duration: 0.15s !important;
+  }
+}

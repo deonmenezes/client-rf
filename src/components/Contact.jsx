@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
+import { getViewportSettings } from '../lib/utils';
 import { CiLinkedin, CiTwitter, CiInstagram } from "react-icons/ci";
 import { FaFacebookF } from "react-icons/fa";
 
@@ -20,12 +21,12 @@ const Contact = () => {
 
   return (
     <motion.div
-      className="w-full bg-gradient-to-br from-blue-50 via-white to-blue-100 py-16 px-4 md:px-20 text-gray-800 font-sans relative"
+      className="w-full bg-gradient-to-br from-blue-50 via-white to-blue-100 py-16 px-4 md:px-20 text-gray-800 font-sans relative will-change-transform gpu-accelerated"
       style={{ backgroundImage: 'url(https://res.cloudinary.com/ddodvrq4x/image/upload/v1749048985/Website_demo/back_earth.png)' }}
-      initial={{ opacity: 0, y: 60 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 1, type: 'spring', stiffness: 60 }}
+      viewport={getViewportSettings()}
+      transition={{ duration: 0.5, type: 'spring', stiffness: 80 }}
     >
       {/* Background Grid */}
       <div className="absolute inset-0 pointer-events-none opacity-20 z-0">
@@ -45,11 +46,11 @@ const Contact = () => {
       <div className="max-w-screen-xl mx-auto flex flex-col lg:flex-row gap-10 relative z-10">
         {/* Left Column */}
         <motion.div
-          className="flex-1 space-y-6"
-          initial={{ x: -60, opacity: 0 }}
+          className="flex-1 space-y-6 will-change-transform"
+          initial={{ x: -40, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ delay: 0.2, duration: 0.7, type: 'spring', stiffness: 60 }}
+          viewport={getViewportSettings({ amount: 0.05 })}
+          transition={{ delay: 0.1, duration: 0.5, type: 'spring', stiffness: 80 }}
         >
           <motion.p className="text-base text-blue-600 font-semibold uppercase tracking-widest"
             initial={{ opacity: 0, y: 10 }}
@@ -57,7 +58,7 @@ const Contact = () => {
             transition={{ delay: 0.3, duration: 0.5 }}
           >Contacts</motion.p>
 
-          <motion.h2 className="text-4xl md:text-5xl font-bold leading-snug text-gray-800 drop-shadow-lg"
+          <motion.h2 className="text-4xl md:text-5xl font-bold leading-snug text-white drop-shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.7 }}

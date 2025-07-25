@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { getViewportSettings } from '../lib/utils';
 
 import img1 from "../assets/rf2.jpg"
 import img2 from "../assets/rf3.jpg"
@@ -139,11 +140,11 @@ export default function Features() {
 
   return (
     <motion.section
-      className="py-12 md:py-20 relative bg-gradient-to-br from-blue-50 via-white to-blue-100"
-      initial={{ opacity: 0, y: 60 }}
+      className="py-12 md:py-20 relative bg-gradient-to-br from-blue-50 via-white to-blue-100 will-change-transform gpu-accelerated"
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 1, type: 'spring', stiffness: 60 }}
+      viewport={getViewportSettings()}
+      transition={{ duration: 0.5, type: 'spring', stiffness: 80 }}
     >
       {/* Dynamic Grid Background */}
       <div className="absolute inset-0 opacity-20">
@@ -191,13 +192,13 @@ export default function Features() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header Section */}
         <motion.div
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-12 md:mb-16 will-change-opacity"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={getViewportSettings({ amount: 0.05 })} 
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.18 } },
+            visible: { transition: { staggerChildren: 0.12 } },
           }}
         >
           {/* Badge */}

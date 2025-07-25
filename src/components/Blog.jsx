@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { getViewportSettings } from '../lib/utils';
 
 const posts = [
   {
@@ -38,11 +39,11 @@ const posts = [
 export default function Blog() {
   return (
     <motion.div
-      className="py-20 relative bg-gradient-to-br from-blue-50 via-white to-blue-100 px-4 md:px-20 text-gray-800 font-sans"
-      initial={{ opacity: 0, y: 60 }}
+      className="py-20 relative bg-gradient-to-br from-blue-50 via-white to-blue-100 px-4 md:px-20 text-gray-800 font-sans will-change-transform gpu-accelerated"
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 1, type: 'spring', stiffness: 60 }}
+      viewport={getViewportSettings()}
+      transition={{ duration: 0.5, type: 'spring', stiffness: 80 }}
     >
       {/* Dynamic Grid Background */}
       <div className="absolute inset-0 opacity-20">

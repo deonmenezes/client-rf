@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { getViewportSettings } from '../lib/utils';
 
 const features = [
   {
@@ -40,11 +41,11 @@ export default function About() {
   return (
     <motion.section
       id="about"
-      className="py-20 relative bg-white"
-      initial={{ opacity: 0, y: 60 }}
+      className="py-20 relative bg-white will-change-transform gpu-accelerated"
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.6, type: 'spring', stiffness: 80 }}
+      viewport={getViewportSettings()}
+      transition={{ duration: 0.4, type: 'spring', stiffness: 100 }}
     >
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-5">

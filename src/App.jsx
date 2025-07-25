@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { responsiveViewport } from './lib/utils';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -23,10 +24,16 @@ function ScrollToTop() {
 }
 
 function App() {
+  // Apply smooth scroll optimizations on mount
+  useEffect(() => {
+    // Update viewport behavior based on device and adjust for better performance
+    document.documentElement.classList.add('smooth-scroll', 'optimized-section');
+  }, []);
+
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="overflow-x-hidden min-h-screen w-full bg-gradient-to-br from-blue-50 via-white to-blue-100 text-gray-800">
+      <div className="overflow-x-hidden min-h-screen w-full bg-gradient-to-br from-blue-50 via-white to-blue-100 text-gray-800 gpu-accelerated">
         <Navbar />
         <div className="pt-20">
           <Routes>

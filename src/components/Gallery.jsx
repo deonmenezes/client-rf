@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { getViewportSettings } from '../lib/utils';
 import iso from "../assets/iso.jpg"
 import iso2 from "../assets/iso2.jpg"
 
@@ -32,11 +33,11 @@ const features = [
 export default function Gallery() {
   return (
     <motion.section
-      className="py-20 relative bg-gradient-to-br from-blue-50 via-white to-blue-100"
-      initial={{ opacity: 0, y: 60 }}
+      className="py-20 relative bg-gradient-to-br from-blue-50 via-white to-blue-100 will-change-transform gpu-accelerated"
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 1, type: 'spring', stiffness: 60 }}
+      viewport={getViewportSettings()}
+      transition={{ duration: 0.5, type: 'spring', stiffness: 80 }}
     >
       {/* Dynamic Grid Background */}
       <div className="absolute inset-0 opacity-20">

@@ -46,9 +46,9 @@ const Navbar = () => {
       <div className="flex items-center gap-4 z-50 relative">
         <motion.div whileTap={{ scale: 0.85 }} className="md:hidden">
           {mobileOpen ? (
-            <X className="w-7 h-7 text-slate-700 cursor-pointer" onClick={() => setMobileOpen(false)} />
+            <X className="w-7 h-7 text-blue-500 cursor-pointer" onClick={() => setMobileOpen(false)} />
           ) : (
-            <Menu className="w-7 h-7 text-slate-700 cursor-pointer" onClick={() => setMobileOpen(true)} />
+            <Menu className="w-7 h-7 text-blue-500 cursor-pointer" onClick={() => setMobileOpen(true)} />
           )}
         </motion.div>
         <motion.div
@@ -127,10 +127,10 @@ const Navbar = () => {
             animate="open"
             exit="closed"
             variants={mobileMenuVariants}
-            className="fixed top-0 right-0 h-screen w-[82vw] max-w-sm bg-white/98 backdrop-blur-2xl border-l border-blue-100/60 z-[100] p-8 pt-10 flex flex-col gap-10"
+            className="fixed top-0 right-0 h-screen w-[82vw] max-w-sm bg-white/60 backdrop-blur-lg border-l border-blue-200/40 z-[100] p-8 pt-10 flex flex-col gap-10"
           >
             <div className="flex justify-between items-center">
-              <X className="w-7 h-7 text-slate-700 cursor-pointer" onClick={() => setMobileOpen(false)} />
+              <X className="w-7 h-7 text-blue-500 cursor-pointer" onClick={() => setMobileOpen(false)} />
             </div>
             <nav className="flex flex-col gap-6">
               {navLinks.map((link) => (
@@ -139,8 +139,8 @@ const Navbar = () => {
                   to={link.to}
                   end={link.to === '/'}
                   className={({ isActive }) =>
-                    `flex items-center text-base font-semibold px-3 py-2 rounded-md transition-colors duration-200 ${
-                      isActive ? 'text-blue-700 bg-blue-50' : 'text-slate-700 hover:text-blue-700 hover:bg-blue-50'
+                    `flex items-center text-base font-semibold px-3 py-2 rounded-md transition-all duration-200 ${
+                      isActive ? 'text-blue-500 bg-blue-50/30 backdrop-blur-sm' : 'text-blue-600 hover:text-blue-400 hover:bg-blue-50/20 hover:backdrop-blur-sm'
                     }`
                   }
                   onClick={() => setMobileOpen(false)}
@@ -153,7 +153,7 @@ const Navbar = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="mt-auto bg-blue-600 text-white px-5 py-3 rounded-lg font-semibold shadow-sm hover:bg-blue-700 transition-colors"
+              className="mt-auto bg-blue-900/70 text-white px-5 py-3 rounded-lg font-semibold shadow-sm hover:bg-blue-800/70 backdrop-blur-md transition-all"
               onClick={() => setMobileOpen(false)}
             >
               <Link to="/contacts">Get In Touch</Link>

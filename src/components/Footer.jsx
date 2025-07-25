@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
+import { getViewportSettings } from '../lib/utils';
+import { useResponsiveViewport } from '../lib/hooks';
 import logo from "../assets/logo.jpg"
 
 export default function Footer() {
+  // Using our custom hook for better mobile animation triggers
+  const responsiveViewport = useResponsiveViewport();
+
   return (
     <motion.footer
-      className="py-20 relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white px-6 md:px-20 font-[Manrope]"
-      initial={{ opacity: 0, y: 60 }}
+      className="py-20 relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white px-6 md:px-20 font-[Manrope] will-change-transform gpu-accelerated"
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 1, type: 'spring', stiffness: 60 }}
+      viewport={responsiveViewport}
+      transition={{ duration: 0.5, type: 'spring', stiffness: 80 }}
     >
       {/* Dynamic Grid Background */}
       <div className="absolute inset-0 opacity-20">

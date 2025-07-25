@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-
+import { getViewportSettings } from '../lib/utils';
+import { useResponsiveViewport } from '../lib/hooks';
 
 
 const cards = [
@@ -26,13 +27,16 @@ const cards = [
 ];
 
 export default function Services() {
+  // Use our responsive viewport hook for better animation triggers
+  const responsiveViewport = useResponsiveViewport();
+  
   return (
     <motion.div
-      className="bg-gradient-to-br from-blue-50 via-white to-blue-100 px-6 py-20 overflow-x-hidden text-gray-800 font-sans relative overflow-hidden"
-      initial={{ opacity: 0, y: 60 }}
+      className="bg-gradient-to-br from-blue-50 via-white to-blue-100 px-6 py-20 overflow-x-hidden text-gray-800 font-sans relative overflow-hidden will-change-transform gpu-accelerated"
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 1, type: 'spring', stiffness: 60 }}
+      viewport={getViewportSettings()}
+      transition={{ duration: 0.5, type: 'spring', stiffness: 80 }}
     >
       {/* Subtle grid overlay */}
       <div className="absolute inset-0 pointer-events-none opacity-20 z-0">
@@ -51,56 +55,58 @@ export default function Services() {
 
       {/* Header */}
       <motion.div
-        className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-12 mb-16"
+        className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-12 mb-16 will-change-opacity"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={getViewportSettings({ amount: 0.05 })}
         variants={{
           hidden: {},
-          visible: { transition: { staggerChildren: 0.18 } },
+          visible: { transition: { staggerChildren: 0.12 } },
         }}
       >
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
+          initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2, duration: 0.7, type: 'spring', stiffness: 60 }}
+          transition={{ delay: 0.1, duration: 0.5, type: 'spring', stiffness: 80 }}
+          className="will-change-transform"
         >
           <motion.p
             className="text-blue-600 font-bold uppercase tracking-wide mb-2"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
           >
             Our Expertise
           </motion.p>
           <motion.h2
             className="text-4xl font-extrabold text-gray-800 leading-tight mb-2 drop-shadow-lg"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.7 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
           >
             Advanced Battery & Energy Storage Systems
           </motion.h2>
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
+          initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.5, duration: 0.7, type: 'spring', stiffness: 60 }}
+          transition={{ delay: 0.3, duration: 0.5, type: 'spring', stiffness: 80 }}
+          className="will-change-transform"
         >
           <motion.p
             className="text-lg font-semibold text-blue-600 mb-4"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
+            transition={{ delay: 0.4, duration: 0.4 }}
           >
             We specialize in energy storage solutions, EV battery pack design, BMS development, and
             power management systems tailored for industries like EVs, agriculture, and solar.
           </motion.p>
           <motion.p
             className="text-lg text-gray-600"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
+            transition={{ delay: 0.5, duration: 0.4 }}
           >
             From public infrastructure to last-mile delivery and customized energy systems,
             we deliver performance-driven, safe, and scalable solutions for a sustainable future.
@@ -110,31 +116,31 @@ export default function Services() {
 
       {/* Cards */}
       <motion.div
-        className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-2"
+        className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-2 will-change-transform"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={getViewportSettings({ amount: 0.05 })}
         variants={{
           hidden: {},
-          visible: { transition: { staggerChildren: 0.18 } },
+          visible: { transition: { staggerChildren: 0.08 } },
         }}
       >
         {cards.map((card, i) => (
           <motion.div
             key={card.id}
-            className="relative bg-white/80 rounded-xl overflow-hidden shadow-xl hover:shadow-blue-400/20 transition-shadow duration-300 flex flex-col border border-blue-200/50 backdrop-blur-lg z-10"
-            initial={{ opacity: 0, y: 60 }}
+            className="relative bg-white/80 rounded-xl overflow-hidden shadow-xl hover:shadow-blue-400/20 transition-shadow duration-300 flex flex-col border border-blue-200/50 backdrop-blur-lg z-10 will-change-transform"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: 0.2 + i * 0.15, duration: 0.7, type: 'spring', stiffness: 80 }}
+            viewport={getViewportSettings({ amount: 0.05 })}
+            transition={{ delay: 0.1 + i * 0.08, duration: 0.5, type: 'spring', stiffness: 100 }}
             whileHover={{ scale: 1.02 }}
           >
             <motion.div
               className="absolute top-6 left-6 text-blue-600 text-5xl font-bold z-10"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 + i * 0.1, duration: 0.6 }}
+              viewport={getViewportSettings({ amount: 0.05 })}
+              transition={{ delay: 0.15 + i * 0.05, duration: 0.4 }}
             >
               {card.id}
             </motion.div>
@@ -152,10 +158,10 @@ export default function Services() {
             
             <motion.div
               className="bg-gradient-to-r from-blue-600 via-blue-700 to-cyan-600 text-white p-4 flex justify-between items-center w-full"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 + i * 0.1, duration: 0.6 }}
+              viewport={getViewportSettings({ amount: 0.05 })}
+              transition={{ delay: 0.2 + i * 0.05, duration: 0.4 }}
             >
               <p className="text-lg font-bold">{card.title}</p>
               <motion.span
