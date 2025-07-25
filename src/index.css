@@ -21,6 +21,11 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   background-color: #ffffff;
   color: #171717;
+  /* Force hardware acceleration for smoother animations */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* Hide scrollbars for cleaner look */
@@ -63,22 +68,47 @@ img {
   contain-intrinsic-size: 300px 200px;
   loading: lazy;
   will-change: transform;
+  /* Hardware acceleration for images */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
-/* Performance improvements */
+/* Performance improvements - Force GPU acceleration */
 .will-change-transform {
   will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .will-change-opacity {
   will-change: opacity;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
-/* GPU acceleration for smooth scrolling */
+/* GPU acceleration for smooth scrolling and animations */
 .gpu-accelerated {
   transform: translateZ(0);
+  -webkit-transform: translateZ(0);
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+/* Force GPU acceleration for all animated elements */
+[data-animate], .motion-safe, .framer-motion-element {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 /* Minimize layout shifts */
@@ -90,26 +120,40 @@ img {
   aspect-ratio: 4 / 3;
 }
 
-/* Ultra-fast animations */
+/* Ultra-fast animations with GPU acceleration */
 @keyframes fadeInUltraFast {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  0% { 
+    opacity: 0; 
+    transform: translate3d(0, 10px, 0);
+  }
+  100% { 
+    opacity: 1; 
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .fade-in-ultra-fast {
-  animation: fadeInUltraFast 0.15s ease-out;
+  animation: fadeInUltraFast 0.2s ease-out;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
-/* Intersection Observer optimizations */
+/* Intersection Observer optimizations with GPU acceleration */
 .lazy-load {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translate3d(0, 20px, 0);
+  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 .lazy-load.loaded {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
 /* Minimize repaints and reflows */
@@ -123,23 +167,99 @@ img {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Mobile optimization classes */
+/* Mobile optimization classes with enhanced GPU acceleration */
 .mobile-optimized .motion-reduce {
-  transition-duration: 0.15s !important;
+  transition-duration: 0.2s !important;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
-/* Animation triggers faster on mobile */
+/* Animation triggers faster on mobile with better performance */
 @media (max-width: 767px) {
+  /* Force GPU acceleration on all animated elements */
+  * {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  
   [data-animate] {
-    transform: translateY(10px) !important; /* Smaller transforms on mobile */
+    transform: translate3d(0, 5px, 0) !important; /* Smaller transforms on mobile */
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
   
   .will-change-transform {
     transform: translate3d(0, 0, 0); /* Force GPU rendering */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
   
-  /* Faster animations on mobile */
+  /* Faster, smoother animations on mobile */
   .motion-safe {
-    transition-duration: 0.15s !important;
+    transition-duration: 0.25s !important;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  
+  /* Optimize touch interactions */
+  .motion-safe:active {
+    transition-duration: 0.1s !important;
+  }
+}
+
+/* Desktop optimizations for 60fps animations */
+@media (min-width: 768px) {
+  .motion-safe {
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+/* Global animation performance boost */
+.framer-motion-element,
+[data-framer-motion] {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+/* Additional performance optimizations */
+.smooth-animation {
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Prevent layout thrashing */
+.no-layout-shift {
+  contain: layout style paint;
+  content-visibility: auto;
+}
+
+/* Force compositing layer for better performance */
+.composite-layer {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Optimize hover effects */
+@media (hover: hover) {
+  .hover-optimized:hover {
+    transform: translateZ(0) scale(1.05);
+    -webkit-transform: translateZ(0) scale(1.05);
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 }
