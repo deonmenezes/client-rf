@@ -134,7 +134,7 @@ export default function Gallery() {
           {features.map((feature, i) => (
             <motion.div
               key={feature.id}
-              className="group relative h-80 bg-white/80 backdrop-blur-sm rounded-2xl border border-blue-200/50 overflow-hidden hover:bg-white hover:shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20"
+              className="group relative h-80 bg-white/80 backdrop-blur-sm rounded-2xl border border-blue-200/50 overflow-hidden hover:bg-white hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-blue-500/20"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -213,7 +213,7 @@ export default function Gallery() {
               {features.map((feature, i) => (
                 <motion.div
                   key={feature.id}
-                  className="w-80 sm:w-96 flex-shrink-0 bg-white/80 backdrop-blur-sm border border-blue-200/50 rounded-2xl p-8 hover:bg-white hover:shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20"
+                  className="w-80 sm:w-96 flex-shrink-0 bg-white/80 backdrop-blur-sm border border-blue-200/50 rounded-2xl p-8 hover:bg-white hover:shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-blue-500/20"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -294,7 +294,7 @@ export default function Gallery() {
           <div className="grid gap-8 max-w-6xl mx-auto">
             {/* ISO 9001 Certificate */}
             <motion.div
-              className="group relative bg-white/80 backdrop-blur-sm rounded-2xl border border-blue-200/50 overflow-hidden hover:bg-white hover:shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20"
+              className="group relative bg-white/80 backdrop-blur-sm rounded-2xl border border-blue-200/50 overflow-hidden hover:bg-white hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-blue-500/20"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -316,7 +316,7 @@ export default function Gallery() {
 
             {/* ISO 14001 Certificate */}
             <motion.div
-              className="group relative bg-white/80 backdrop-blur-sm rounded-2xl border border-blue-200/50 overflow-hidden hover:bg-white hover:shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20"
+              className="group relative bg-white/80 backdrop-blur-sm rounded-2xl border border-blue-200/50 overflow-hidden hover:bg-white hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-blue-500/20"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
