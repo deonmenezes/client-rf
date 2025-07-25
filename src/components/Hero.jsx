@@ -11,9 +11,15 @@ import finalSlide4 from "../assets/unnames.jpeg";
 const backgroundSliderImages = [myNewSlide1, myNewSlide2, finalSlide4];
 
 const bgImageVariants = {
-  enter: { opacity: 0 },
-  center: { opacity: 1 },
-  exit: { opacity: 0 },
+  enter: {
+    x: "100%"
+  },
+  center: {
+    x: "0%"
+  },
+  exit: {
+    x: "-100%"
+  }
 };
 
 export default function Hero() {
@@ -73,20 +79,32 @@ export default function Hero() {
       variants={backgroundVariants}
     >
       {/* Background Images */}
-      <div className="absolute inset-0 z-0">
-        {backgroundSliderImages.map((image, index) => (
-          <motion.img
-            key={index}
-            src={image}
-            alt={`Background Slider Image ${index + 1}`}
-            className="w-full h-full object-cover"
-            initial="enter"
-            animate={currentBgImageIndex === index ? "center" : "exit"}
-            variants={bgImageVariants}
-            transition={{ duration: 1.5, ease: 'easeInOut' }}
-            style={{ position: 'absolute' }}
-          />
-        ))}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <motion.div
+          className="flex w-full h-full"
+          animate={{
+            x: `-${currentBgImageIndex * 100}%`
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 50,
+            damping: 25,
+            duration: 2.5
+          }}
+        >
+          {backgroundSliderImages.map((image, index) => (
+            <div
+              key={index}
+              className="min-w-full h-full relative"
+            >
+              <img
+                src={image}
+                alt={`Background Slider Image ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </motion.div>
         <div className="absolute inset-0 bg-neutral-900 opacity-40"></div>
       </div>
 
