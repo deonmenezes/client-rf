@@ -14,6 +14,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Chatbot from './components/Chatbot';
 import WhatsAppButton from './components/WhatsAppButton';
+import ServiceDetail from './components/ServiceDetail';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -50,6 +51,7 @@ function App() {
               </>
             } />
             <Route path="/services" element={<Features />} />
+            <Route path="/services/:serviceId" element={<ServiceDetail />} />
             <Route path="/projects" element={<Clients />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contacts" element={<Contact />} />

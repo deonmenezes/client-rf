@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { getViewportSettings } from '../lib/utils';
+import { Link } from 'react-router-dom';
 
 import img1 from "../assets/rf2.jpg"
 import img2 from "../assets/rf3.jpg"
@@ -13,9 +14,10 @@ import img8 from "../assets/rf9.jpg"
 
 const services = [
   {
+    id: 'electrical-services',
     title: "Electrical Services",
     description: "Comprehensive industrial and commercial electrical installations, troubleshooting, and energy-efficient upgrades.",
-    image:img6,
+    image: img6,
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -23,6 +25,7 @@ const services = [
     )
   },
   {
+    id: 'fabrication-services',
     title: "Fabrication Services",
     description: "Precision mechanical repair, maintenance, and system assembly for manufacturing and processing industries.",
     image: img4,
@@ -34,9 +37,10 @@ const services = [
     )
   },
   {
+    id: 'hydraulic-services',
     title: "Hydraulic Services",
     description: "Upgrading legacy systems with smart PLC, SCADA, and control panel automation for enhanced productivity.",
-    image:img7,
+    image: img7,
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
@@ -44,9 +48,10 @@ const services = [
     )
   },
   {
+    id: 'automation-retrofitting',
     title: "Automation and retrofitting",
     description: "Custom metal fabrication and high-quality welding solutions tailored for industrial and structural needs.",
-    image:img5,
+    image: img5,
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
@@ -54,7 +59,8 @@ const services = [
     )
   },
   {
-    title: "Pneumatic system manufacturing and service",
+    id: 'pneumatic-systems',
+    title: "Pneumatic system manufacturing and service",
     description: "Design, maintenance, and integration of advanced hydraulic systems across multiple applications.",
     image: img3,
     icon: (
@@ -63,27 +69,28 @@ const services = [
       </svg>
     )
   },
-  
   {
+    id: 'trading-manufacturing-parts',
     title: "Trading & Manufacturing Parts",
     description: "Supply of quality engineering parts, spares, and equipment with custom manufacturing support.",
-    image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    image: img1,
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M9 1v6m6-6v6" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
       </svg>
     )
   },
   {
-    title: "Machining service",
-    description: "Authorized dealer of Himalaya Air Conditioners, Industrial Spray Systems, and Welding Solutions.",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    id: 'maintenance-repair',
+    title: "Maintenance & Repair",
+    description: "Professional maintenance and repair services for industrial equipment and systems.",
+    image: img2,
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a1 1 0 01-1-1V9a1 1 0 011-1h1a2 2 0 100-4H4a1 1 0 01-1-1V4a1 1 0 011-1h3a1 1 0 001-1z" />
       </svg>
     )
-  },
+  }
 ];
 
 export default function Features() {
@@ -285,48 +292,50 @@ export default function Features() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
                 >
-                  <div className="relative h-[400px] sm:h-[450px] md:h-[500px] bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-blue-200/50 overflow-hidden hover:bg-white hover:shadow-lg transition-all duration-300 group-hover:scale-[1.02] sm:group-hover:scale-105 group-hover:shadow-lg sm:group-hover:shadow-2xl group-hover:shadow-blue-500/20">
-                    {/* Background Image */}
-                    <div className="absolute inset-0">
-                      <img
-                        src={service.image}
-                        alt={service.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent" />
+                  <Link to={`/services/${service.id}`}>
+                    <div className="relative h-[400px] sm:h-[450px] md:h-[500px] bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-blue-200/50 overflow-hidden hover:bg-white hover:shadow-lg transition-all duration-300 group-hover:scale-[1.02] sm:group-hover:scale-105 group-hover:shadow-lg sm:group-hover:shadow-2xl group-hover:shadow-blue-500/20 cursor-pointer">
+                      {/* Background Image */}
+                      <div className="absolute inset-0">
+                        <img
+                          src={service.image}
+                          alt={service.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent" />
+                      </div>
+
+                      {/* Content */}
+                      <div className="relative z-10 h-full flex flex-col justify-end p-4 sm:p-6">
+                        {/* Icon */}
+                        <motion.div
+                          className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-blue-500/20 rounded-lg sm:rounded-xl border border-blue-400/30 text-blue-600 mb-3 sm:mb-4 backdrop-blur-sm group-hover:bg-blue-500/30 group-hover:scale-110 transition-all duration-300"
+                          whileHover={{ rotate: 10 }}
+                        >
+                          {service.icon}
+                        </motion.div>
+
+                        {/* Title */}
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-blue-300 transition-colors duration-300">
+                          {service.title}
+                        </h3>
+
+                        {/* Description */}
+                        <p className="text-gray-200 text-sm sm:text-base leading-relaxed group-hover:text-white transition-colors duration-300">
+                          {service.description}
+                        </p>
+
+                        {/* Arrow */}
+                        <motion.div
+                          className="mt-3 sm:mt-4 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300"
+                          whileHover={{ scale: 1.2, rotate: 45 }}
+                        >
+                          <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </motion.div>
+                      </div>
                     </div>
-
-                    {/* Content */}
-                    <div className="relative z-10 h-full flex flex-col justify-end p-4 sm:p-6">
-                      {/* Icon */}
-                      <motion.div
-                        className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-blue-500/20 rounded-lg sm:rounded-xl border border-blue-400/30 text-blue-600 mb-3 sm:mb-4 backdrop-blur-sm group-hover:bg-blue-500/30 group-hover:scale-110 transition-all duration-300"
-                        whileHover={{ rotate: 10 }}
-                      >
-                        {service.icon}
-                      </motion.div>
-
-                      {/* Title */}
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-blue-300 transition-colors duration-300">
-                        {service.title}
-                      </h3>
-
-                      {/* Description */}
-                      <p className="text-gray-200 text-sm sm:text-base leading-relaxed group-hover:text-white transition-colors duration-300">
-                        {service.description}
-                      </p>
-
-                      {/* Arrow */}
-                      <motion.div
-                        className="mt-3 sm:mt-4 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300"
-                        whileHover={{ scale: 1.2, rotate: 45 }}
-                      >
-                        <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </motion.div>
-                    </div>
-                  </div>
+                  </Link>
                 </motion.div>
               ))}
             </motion.div>
