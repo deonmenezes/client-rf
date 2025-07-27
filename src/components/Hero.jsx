@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 // === STEP 1: IMPORT YOUR NEW IMAGES HERE ===
-import myNewSlide1 from "../assets/unnamed.jpg";
-import myNewSlide2 from "../assets/unnamedd.jpg";
-import finalSlide4 from "../assets/unnames.jpeg";
+import myNewSlide1 from "../assets/car1.png";
+import myNewSlide2 from "../assets/car2.png";
+import finalSlide4 from "../assets/car3.png"; 
 
 // === STEP 2: DEFINE YOUR SLIDER IMAGES ARRAY ===
 const backgroundSliderImages = [myNewSlide1, myNewSlide2, finalSlide4];
@@ -63,6 +63,57 @@ export default function Hero() {
     }
   };
 
+  const textContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const textVariants = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+      scale: 0.8,
+      rotateX: -90,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+        duration: 0.8,
+      },
+    },
+  };
+
+  const buttonVariants = {
+    hidden: {
+      opacity: 0,
+      x: -30,
+      scale: 0.9,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        damping: 15,
+        stiffness: 120,
+        duration: 0.6,
+      },
+    },
+  };
+
   return (
     <motion.section
       className="relative text-neutral-800 py-20 px-6 md:px-16 overflow-hidden bg-white gpu-accelerated"
@@ -105,7 +156,7 @@ export default function Hero() {
             </div>
           ))}
         </motion.div>
-        <div className="absolute inset-0 bg-neutral-900 opacity-40"></div>
+        <div className="absolute inset-0 bg-neutral-900 opacity-10"></div>
       </div>
 
       {/* Grid Pattern */}
@@ -195,42 +246,120 @@ export default function Hero() {
       {/* Hero Text */}
       <div className="relative z-40 max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-12 text-white">
         <motion.div
-          initial={{ opacity: 0, x: -60 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          variants={textContainerVariants}
+          initial="hidden"
+          animate="visible"
           className="md:w-1/2 text-center md:text-left"
         >
-          <span className="inline-block bg-neutral-800 text-white px-4 py-1 rounded-full text-sm font-medium mb-6">
-            Professional Engineering
-          </span>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ 
+              opacity: 1, 
+              y: 0,
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+            }}
+            transition={{ 
+              opacity: { delay: 0.8, duration: 1.5, ease: [0.25, 0.46, 0.45, 0.94] },
+              y: { delay: 0.8, duration: 1.5, ease: [0.25, 0.46, 0.45, 0.94] },
+              backgroundPosition: {
+                duration: 100,
+                ease: "easeInOut",
+                repeat: Infinity,
+              }
+            }}
+            className="text-3xl md:text-4xl font-bold leading-tight mb-0 pb-1 -ml-4 md:-ml-2"
+            style={{
+              background: "linear-gradient(-45deg, #ffffff, #60a5fa, #3b82f6, #ffffff)",
+              backgroundSize: "400% 400%",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            We deliver advanced engineering, automation, and energy solutions
+          </motion.h1>
 
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-            We deliver advanced{' '}
-            <span className="text-neutral-300 inline-block">
-              engineering, automation, and energy solutions
-            </span>
-          </h1>
-
-          <p className="text-lg text-neutral-200 mb-8">
+          <motion.p
+            variants={textVariants}
+            className="text-lg mb-6 mt-2 md:-ml-2"
+            style={{
+              background: "linear-gradient(-45deg, #f3f4f6, #dbeafe, #93c5fd, #f3f4f6)",
+              backgroundSize: "400% 400%",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+            animate={{
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+            }}
+            transition={{
+              backgroundPosition: {
+                duration: 120,
+                ease: "easeInOut",
+                repeat: Infinity,
+              }
+            }}
+          >
             tailored for the world's most demanding industries.{' '}
-            <span className="text-neutral-300 font-medium">
+            <motion.span
+              className="font-medium"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1,
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              }}
+              transition={{ 
+                delay: 2, 
+                duration: 0.6,
+                backgroundPosition: {
+                  duration: 120,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                }
+              }}
+              style={{
+                background: "linear-gradient(-45deg, #ffffff, #60a5fa, #2563eb, #ffffff)",
+                backgroundSize: "400% 400%",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
               Innovation, reliability, and performance
-            </span>{' '}
+            </motion.span>{' '}
             —engineered for your success.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <Link to="/services">
-              <button className="bg-blue-600 hover:bg-blue-700 transition-all px-6 py-2 rounded-full font-medium skew-hover text-white">
-                Services
-              </button>
-            </Link>
-            <Link to="/projects">
-              <button className="border border-blue-400 hover:border-blue-600 px-6 py-2 rounded-full font-medium skew-hover text-gray-100 hover:text-blue-300">
-                Our Work
-              </button>
-            </Link>
-          </div>
+          <motion.div
+            variants={textContainerVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+          >
+            <motion.div variants={buttonVariants}>
+              <Link to="/services">
+                <motion.button
+                  className="bg-blue-600 hover:bg-blue-700 transition-all px-6 py-2 rounded-full font-medium text-white"
+                  whileHover={{ y: -2, boxShadow: "0 10px 25px rgba(59, 130, 246, 0.3)" }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  Services
+                </motion.button>
+              </Link>
+            </motion.div>
+            <motion.div variants={buttonVariants}>
+              <Link to="/projects">
+                <motion.button
+                  className="border border-blue-400 hover:border-blue-600 px-6 py-2 rounded-full font-medium text-gray-100 hover:text-blue-300"
+                  whileHover={{ y: -2, borderColor: "#3b82f6" }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  Our Work
+                </motion.button>
+              </Link>
+            </motion.div>
+          </motion.div>
         </motion.div>
       </div>
     </motion.section>
