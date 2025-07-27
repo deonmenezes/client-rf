@@ -1,15 +1,76 @@
 import { motion } from "framer-motion";
 import { getViewportSettings } from '../lib/utils';
 import client1 from "../assets/client1.jpeg"
-import client2 from "../assets/client2.jpeg"
+//import client2 from "../assets/client2.jpeg"
 import client3 from "../assets/client3.jpeg"
-import client4 from "../assets/client4.jpeg"
+//import client4 from "../assets/client4.jpeg"
 import client5 from "../assets/client5.jpeg"
+import client6 from "../assets/client6.jpeg"
+import client7 from "../assets/client7.png"
+import client8 from "../assets/client8.png"
+import client9 from "../assets/client9.jpeg"
+import client11 from "../assets/client11.jpg"
+import client12 from "../assets/client12.png"
+//import client13 from "../assets/client13.jpeg"
+import client14 from "../assets/client14.jpeg"
+import client15 from "../assets/client15.png"
+import { useNavigate } from 'react-router-dom';
+
 const clients = [
-  "Steel & Pipe Manufacturing",
-  "Marine",
-  "Construction",
-  "EPC Contractors",
+  { 
+    name: "Steel & Pipe Manufacturing", 
+    serviceId: "fabrication-services",
+    icon: (
+      <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2L2 7v10c0 5.55 3.84 9.739 9 9.949V19h2v7.949c5.16-.21 9-4.399 9-9.949V7l-10-5z"/>
+      </svg>
+    )
+  },
+  { 
+    name: "Marine", 
+    serviceId: "hydraulic-services",
+    icon: (
+      <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M6.5 12C5.67 12 5 12.67 5 13.5S5.67 15 6.5 15 8 14.33 8 13.5 7.33 12 6.5 12M17.5 12C16.67 12 16 12.67 16 13.5S16.67 15 17.5 15 19 14.33 19 13.5 18.33 12 17.5 12M9.84 8.16L8.5 9.5L10.19 11.19C10.07 11.61 10 12.05 10 12.5C10 13.14 10.12 13.75 10.34 14.31L2.5 22.14L3.86 23.5L11.69 15.66C12.25 15.88 12.86 16 13.5 16S14.75 15.88 15.31 15.66L23.14 23.5L24.5 22.14L16.66 14.31C16.88 13.75 17 13.14 17 12.5C17 12.05 16.93 11.61 16.81 11.19L18.5 9.5L17.16 8.16L15.34 10C14.75 9.12 13.86 8.5 12.84 8.16V6H11.16V8.16C10.14 8.5 9.25 9.12 8.66 10L6.84 8.16Z"/>
+      </svg>
+    )
+  },
+  { 
+    name: "Construction", 
+    serviceId: "electrical-services",
+    icon: (
+      <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 3L2 12H5V20H19V12H22L12 3M12 7.7L17 12V18H15V14H9V18H7V12L12 7.7Z"/>
+      </svg>
+    )
+  },
+  { 
+    name: "EPC Contractors", 
+    serviceId: "automation-retrofitting",
+    icon: (
+      <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M3 3V21H21V3H3M19 19H5V5H19V19M7 7V17H9V7H7M11 7V17H13V7H11M15 7V17H17V7H15Z"/>
+      </svg>
+    )
+  },
+  { 
+    name: "Aviation Sector", 
+    serviceId: "pneumatic-systems",
+    icon: (
+      <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+      </svg>
+    )
+  },
+  { 
+    name: "Railways", 
+    serviceId: "maintenance-repair",
+    icon: (
+      <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2c-4 0-8 .5-8 4v9.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h2.23l2-2H14l2 2h2v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-3.58-4-8-4zM7.5 17c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/>
+      </svg>
+    )
+  },
 ];
 
 const clientCompanies = [
@@ -19,25 +80,55 @@ const clientCompanies = [
    
   },
   {
-    id: 2,
-    logo: client2, // Placeholder - add your logo src here
-   
-  },
-  {
     id: 3,
     logo: client3, // Placeholder - add your logo src here
   },
   {
-    id: 4,
-    logo: client4, // Placeholder - add your logo src here
-  },
-  {
     id: 5,
     logo: client5, // Placeholder - add your logo src here
-  }
+  },
+  {
+    id: 6,
+    logo: client6, // Placeholder - add your logo src here
+  },
+  {
+    id: 7,
+    logo: client7, // Placeholder - add your logo src here
+  },
+  {
+    id: 9,
+    logo: client8, // Placeholder - add your logo src here
+  },
+  {
+    id: 10,
+    logo: client9, // Placeholder - add your logo src here
+  },
+  {
+    id: 11,
+    logo: client11, // Placeholder - add your logo src here
+  },
+  {
+    id: 12,
+    logo: client12, // Placeholder - add your logo src here
+  },
+  {
+    id: 14,
+    logo: client14, // Placeholder - add your logo src here
+  },
+
+  {
+    id: 15,
+    logo: client15, // Placeholder - add your logo src here
+  },
 ];
 
 export default function Clients() {
+  const navigate = useNavigate();
+
+  const handleClientClick = (serviceId) => {
+    navigate(`/services/${serviceId}`);
+  };
+
   return (
     <motion.section
       className="py-20 relative bg-gradient-to-br from-blue-50 via-white to-blue-100 will-change-transform gpu-accelerated"
@@ -137,42 +228,33 @@ export default function Clients() {
         </motion.div>
 
         {/* Industries Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-20">
           {clients.map((client, idx) => (
             <motion.div
               key={idx}
-              className="group relative h-32 bg-white/80 backdrop-blur-sm rounded-2xl border border-blue-200/50 overflow-hidden hover:bg-white hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-blue-500/20"
+              className="group relative h-32 bg-white/80 backdrop-blur-sm rounded-2xl border border-blue-200/50 overflow-hidden hover:bg-white hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-blue-500/20 cursor-pointer flex items-center justify-center"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.6 }}
               whileHover={{ y: -10 }}
+              onClick={() => handleClientClick(client.serviceId)}
             >
               {/* Gradient Border Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-transparent to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               
               {/* Content */}
-              <div className="relative z-10 h-full flex flex-col justify-center p-6">
-                {/* Icon */}
-                <motion.div
-                  className="inline-flex items-center justify-center w-10 h-10 bg-blue-500/20 rounded-xl border border-blue-400/30 text-blue-600 mb-3 backdrop-blur-sm group-hover:bg-blue-500/30 group-hover:scale-110 transition-all duration-300 mx-auto"
-                  whileHover={{ rotate: 10 }}
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                </motion.div>
-
-                {/* Title */}
-                <h3 className="text-center text-lg font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
-                  {client}
+              <div className="relative z-10 text-center px-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-xl border border-blue-400/30 flex items-center justify-center backdrop-blur-sm group-hover:bg-gradient-to-br group-hover:from-blue-500/30 group-hover:to-cyan-500/30 transition-all duration-300 mx-auto mb-3">
+                  {client.icon}
+                </div>
+                <h3 className="text-sm font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300 text-center">
+                  {client.name}
                 </h3>
-
-                {/* Bottom Accent */}
                 <motion.div 
-                  className="mx-auto mt-3 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full transition-all duration-300"
-                  initial={{ width: "16px" }}
-                  whileHover={{ width: "32px" }}
+                  className="mx-auto mt-2 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full transition-all duration-300"
+                  initial={{ width: "20px" }}
+                  whileHover={{ width: "40px" }}
                 />
               </div>
             </motion.div>

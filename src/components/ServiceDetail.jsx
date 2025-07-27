@@ -1,6 +1,8 @@
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import img8 from "../assets/rf9.jpg";
+import fabImage from "../assets/fab.jpeg";
+
+console.log('fabImage:', fabImage); // Add this line temporarily
 
 const serviceDetails = {
   'electrical-services': {
@@ -14,7 +16,7 @@ const serviceDetails = {
     title: "Fabrication Services", 
     description: "Precision mechanical repair, maintenance, and system assembly for manufacturing and processing industries.",
     fullDescription: "Expert fabrication services including custom metalwork, precision machining, and assembly solutions for industrial applications.",
-    image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1",
+    image: fabImage,
     features: ["Custom Fabrication", "Precision Machining", "Welding Services", "Assembly Solutions"]
   },
   'hydraulic-services': {
@@ -97,7 +99,7 @@ export default function ServiceDetail() {
           {service.title}
         </motion.h1>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           <motion.div
             initial={{ x: -30, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -106,7 +108,9 @@ export default function ServiceDetail() {
             <img 
               src={service.image} 
               alt={service.title}
-              className="w-full h-64 object-cover rounded-xl shadow-lg"
+              className={`w-full h-auto object-contain rounded-xl shadow-lg ${
+                serviceId === 'fabrication-services' ? 'max-w-xs' : 'max-w-md'
+              }`}
             />
           </motion.div>
           
@@ -130,6 +134,19 @@ export default function ServiceDetail() {
     </motion.div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

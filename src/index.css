@@ -13,7 +13,6 @@ html {
 }
 
 body {
-  overflow-x: hidden;
   overscroll-behavior-y: none;
   font-display: swap;
   -webkit-font-smoothing: antialiased;
@@ -21,11 +20,6 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   background-color: #ffffff;
   color: #171717;
-  /* Force hardware acceleration for smoother animations */
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 }
 
 /* Hide scrollbars for cleaner look */
@@ -68,15 +62,15 @@ img {
   contain-intrinsic-size: 300px 200px;
   loading: lazy;
   will-change: transform;
-  /* Hardware acceleration for images */
+  /* Hardware acceleration for images only - not for containers */
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 
-/* Performance improvements - Force GPU acceleration */
-.will-change-transform {
+/* Performance improvements - Force GPU acceleration for NON-FIXED elements only */
+.will-change-transform:not(.fixed) {
   will-change: transform;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
@@ -84,7 +78,7 @@ img {
   -webkit-backface-visibility: hidden;
 }
 
-.will-change-opacity {
+.will-change-opacity:not(.fixed) {
   will-change: opacity;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
@@ -92,8 +86,8 @@ img {
   -webkit-backface-visibility: hidden;
 }
 
-/* GPU acceleration for smooth scrolling and animations */
-.gpu-accelerated {
+/* GPU acceleration for smooth scrolling and animations - EXCLUDE fixed elements */
+.gpu-accelerated:not(.fixed):not([class*="fixed"]) {
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   backface-visibility: hidden;
@@ -102,8 +96,8 @@ img {
   -webkit-perspective: 1000px;
 }
 
-/* Force GPU acceleration for all animated elements */
-[data-animate], .motion-safe, .framer-motion-element {
+/* Force GPU acceleration for all animated elements - EXCLUDE fixed elements */
+[data-animate]:not(.fixed), .motion-safe:not(.fixed), .framer-motion-element:not(.fixed) {
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   backface-visibility: hidden;
@@ -122,17 +116,17 @@ img {
 
 /* Ultra-fast animations with GPU acceleration */
 @keyframes fadeInUltraFast {
-  0% { 
-    opacity: 0; 
+  0% {
+    opacity: 0;
     transform: translate3d(0, 10px, 0);
   }
-  100% { 
-    opacity: 1; 
+  100% {
+    opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
 
-.fade-in-ultra-fast {
+.fade-in-ultra-fast:not(.fixed) {
   animation: fadeInUltraFast 0.2s ease-out;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
@@ -141,17 +135,17 @@ img {
 }
 
 /* Intersection Observer optimizations with GPU acceleration */
-.lazy-load {
+.lazy-load:not(.fixed) {
   opacity: 0;
   transform: translate3d(0, 20px, 0);
-  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   will-change: transform, opacity;
 }
 
-.lazy-load.loaded {
+.lazy-load.loaded:not(.fixed) {
   opacity: 1;
   transform: translate3d(0, 0, 0);
 }
@@ -168,7 +162,7 @@ img {
 }
 
 /* Mobile optimization classes with enhanced GPU acceleration */
-.mobile-optimized .motion-reduce {
+.mobile-optimized .motion-reduce:not(.fixed) {
   transition-duration: 0.2s !important;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
@@ -176,27 +170,21 @@ img {
 
 /* Animation triggers faster on mobile with better performance */
 @media (max-width: 767px) {
-  /* Force GPU acceleration on all animated elements */
-  * {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-  }
-  
-  [data-animate] {
+  [data-animate]:not(.fixed) {
     transform: translate3d(0, 5px, 0) !important; /* Smaller transforms on mobile */
     will-change: transform, opacity;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
   }
-  
-  .will-change-transform {
+
+  .will-change-transform:not(.fixed) {
     transform: translate3d(0, 0, 0); /* Force GPU rendering */
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
   }
-  
+
   /* Faster, smoother animations on mobile */
-  .motion-safe {
+  .motion-safe:not(.fixed) {
     transition-duration: 0.25s !important;
     transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
     transform: translateZ(0);
@@ -204,16 +192,16 @@ img {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
   }
-  
+
   /* Optimize touch interactions */
-  .motion-safe:active {
+  .motion-safe:active:not(.fixed) {
     transition-duration: 0.1s !important;
   }
 }
 
 /* Desktop optimizations for 60fps animations */
 @media (min-width: 768px) {
-  .motion-safe {
+  .motion-safe:not(.fixed) {
     transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
@@ -222,9 +210,9 @@ img {
   }
 }
 
-/* Global animation performance boost */
-.framer-motion-element,
-[data-framer-motion] {
+/* Global animation performance boost - EXCLUDE fixed elements */
+.framer-motion-element:not(.fixed),
+[data-framer-motion]:not(.fixed) {
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   backface-visibility: hidden;
@@ -233,7 +221,7 @@ img {
 }
 
 /* Additional performance optimizations */
-.smooth-animation {
+.smooth-animation:not(.fixed) {
   animation-fill-mode: both;
   animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transform: translateZ(0);
@@ -243,11 +231,10 @@ img {
 /* Prevent layout thrashing */
 .no-layout-shift {
   contain: layout style paint;
-  content-visibility: auto;
 }
 
-/* Force compositing layer for better performance */
-.composite-layer {
+/* Force compositing layer for better performance - EXCLUDE fixed elements */
+.composite-layer:not(.fixed) {
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   will-change: transform;
@@ -257,9 +244,138 @@ img {
 
 /* Optimize hover effects */
 @media (hover: hover) {
-  .hover-optimized:hover {
+  .hover-optimized:hover:not(.fixed) {
     transform: translateZ(0) scale(1.05);
     -webkit-transform: translateZ(0) scale(1.05);
     transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
+}
+
+/* CRITICAL: FIXED POSITIONING SOLUTIONS */
+
+/* Ensure no parent containers interfere with fixed positioning */
+html, body, #root {
+  /* Remove any transforms that create new containing blocks */
+  transform: none !important;
+  -webkit-transform: none !important;
+  
+  /* Remove perspective that can interfere with fixed positioning */
+  perspective: none !important;
+  -webkit-perspective: none !important;
+  
+  /* Ensure static positioning context */
+  position: static !important;
+  
+  /* Ensure they span the full viewport height */
+  height: auto !important;
+  min-height: 100vh !important;
+  
+  /* Ensure overflow does not clip fixed elements */
+  overflow: visible !important;
+  overflow-x: hidden !important; /* Usually want to hide horizontal scroll */
+  overflow-y: scroll !important; /* Ensure vertical scrolling works */
+  
+  /* Reset any potential GPU acceleration that might break fixed positioning */
+  will-change: auto !important;
+  backface-visibility: visible !important;
+  -webkit-backface-visibility: visible !important;
+}
+
+/* Specifically target main app containers that might break fixed positioning */
+div[class*="min-h-screen"], 
+.main-container,
+.app-container {
+  transform: none !important;
+  -webkit-transform: none !important;
+  perspective: none !important;
+  -webkit-perspective: none !important;
+  position: static !important;
+}
+
+/* Remove transforms from BrowserRouter containers */
+.gpu-accelerated {
+  /* Only apply GPU acceleration to non-container elements */
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+/* Fixed positioning override for floating buttons */
+.floating-button {
+  position: fixed !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  perspective: none !important;
+  -webkit-perspective: none !important;
+}
+
+/* Ensure fixed elements are not affected by parent transforms */
+.fixed {
+  position: fixed !important;
+  z-index: 9999 !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  perspective: none !important;
+  -webkit-perspective: none !important;
+}
+
+/* Specific overrides for your floating buttons */
+a[aria-label="Chat on WhatsApp"],
+button[aria-label="Open Chatbot"],
+div[class*="fixed"] {
+  position: fixed !important;
+  z-index: 9999 !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+/* For motion/framer-motion elements that should be fixed */
+.fixed[style*="transform"] {
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+/* Override for fixed elements inside animated containers */
+[data-animate] .fixed,
+.motion-safe .fixed,
+.framer-motion-element .fixed,
+.gpu-accelerated .fixed {
+  transform: none !important;
+  -webkit-transform: none !important;
+  position: fixed !important;
+  z-index: 9999 !important;
+}
+
+/* Ensure WhatsApp and Chatbot buttons stay fixed */
+div[style*="position: fixed"] {
+  position: fixed !important;
+  z-index: 9999 !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+/* For the Chatbot's portal root - target specifically if it's the child of body */
+body > div[style*="position: fixed"] {
+  position: fixed !important;
+  z-index: 9999 !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+/* Ensure motion components don't break fixed positioning */
+.fixed .motion-div,
+.fixed motion-div,
+.floating-button motion-a {
+  transform: none !important;
+  -webkit-transform: none !important;
+}
+
+/* Additional safety overrides for common fixed element patterns */
+[class*="bottom-6"][class*="right-6"],
+[class*="bottom-6"][class*="left-6"] {
+  position: fixed !important;
+  z-index: 9999 !important;
+  transform: none !important;
+  -webkit-transform: none !important;
 }

@@ -138,7 +138,7 @@ export default function Footer() {
                   <NavLink to="/blog" className={({ isActive }) => `text-blue-200 hover:text-white hover:pl-3 transition-all text-sm ${isActive ? 'font-bold text-blue-300' : ''}`}>Blog</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/contacts" className={({ isActive }) => `text-blue-200 hover:text-white hover:pl-3 transition-all text-sm ${isActive ? 'font-bold text-blue-300' : ''}`}>Contacts</NavLink>
+                  <NavLink to="/contacts" className={({ isActive }) => `text-blue-200 hover:text-white hover:pl-3 transition-all text-sm ${isActive ? 'font-bold text-blue-300' : ''}`}>Contact Us</NavLink>
                 </li>
                 
                
