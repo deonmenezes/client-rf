@@ -6,23 +6,23 @@ import { useResponsiveViewport } from '../lib/hooks';
 const cards = [
   {
     id: '01',
-    title: 'Energy Storage Solutions',
-    img: 'https://res.cloudinary.com/ddodvrq4x/image/upload/v1749051470/Website_demo/ant1.png',
+    title: 'Oil and Gas',
+    img: 'https://new.abb.com/images/librariesprovider87/drives-global/drives-frontpage-segment-oilgas.jpg?sfvrsn=82109a0a_0',
   },
   {
     id: '02',
-    title: 'BMS & Thermal',
-    img: 'https://res.cloudinary.com/ddodvrq4x/image/upload/v1749051498/Website_demo/ant2.png',
+    title: 'Marine',
+    img: 'https://opsealog.com/wp-content/uploads/2022/12/shipping-1.jpg',
   },
   {
     id: '03',
-    title: 'EV Battery Solutions',
-    img: 'https://res.cloudinary.com/ddodvrq4x/image/upload/v1749051522/Website_demo/ant3.png',
+    title: 'Power and Energy',
+    img: 'https://media.istockphoto.com/id/1135081245/photo/high-voltage-power-lines-electricity-distribution-station-high-voltage-electric-transmission.jpg?s=612x612&w=0&k=20&c=WlPe7-tqN_kwy4z1L8lrlIM7ug6pjOSL8Kw32AQaTCE=',
   },
   {
     id: '04',
-    title: 'Custom Energy Systems',
-    img: 'https://res.cloudinary.com/ddodvrq4x/image/upload/v1749051548/Website_demo/ant4.png',
+    title: 'Manufacturing',
+    img: 'https://www.goodwin.edu/enews/wp-content/uploads/2024/12/homa-appliances-pWUyHVJgLhg-unsplash-scaled.jpg',
   },
 ];
 
@@ -79,12 +79,12 @@ export default function Services() {
             Our Expertise
           </motion.p>
           <motion.h2
-            className="text-4xl font-extrabold text-gray-800 leading-tight mb-2 drop-shadow-lg"
-            initial={{ opacity: 0, y: 15 }}
+            className="text-4xl md:text-5xl font-black mb-6 text-gray-800"
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
+            transition={{ delay: 0.2, duration: 0.5, type: 'spring', stiffness: 80 }}
           >
-            Advanced Battery & Energy Storage Systems
+            Integrated Engineering Solutions
           </motion.h2>
         </motion.div>
         <motion.div
@@ -99,8 +99,7 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.4 }}
           >
-            We specialize in energy storage solutions, EV battery pack design, BMS development, and
-            power management systems tailored for industries like EVs, agriculture, and solar.
+            We specialize in mechanical, hydraulic, electrical, and automation solutions across diverse industries including Oil & Gas, Marine, Power & Energy, and Manufacturing sectors.
           </motion.p>
           <motion.p
             className="text-lg text-gray-600"
@@ -108,8 +107,7 @@ export default function Services() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.4 }}
           >
-            From public infrastructure to last-mile delivery and customized energy systems,
-            we deliver performance-driven, safe, and scalable solutions for a sustainable future.
+            From industrial infrastructure to complex installations and commissioning projects, we deliver comprehensive engineering solutions tailored to each sector's unique requirements.
           </motion.p>
         </motion.div>
       </motion.div>
@@ -136,7 +134,7 @@ export default function Services() {
             whileHover={{ scale: 1.02 }}
           >
             <motion.div
-              className="absolute top-6 left-6 text-blue-600 text-5xl font-bold z-10"
+              className="absolute top-6 left-6 text-white text-5xl font-bold z-10 border-white/20"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={getViewportSettings({ amount: 0.05 })}

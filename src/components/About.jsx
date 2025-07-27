@@ -10,6 +10,7 @@ const features = [
       </svg>
     ),
     label: 'Strategy Planning',
+    link: '/services/electrical-services'
   },
   {
     icon: (
@@ -18,6 +19,7 @@ const features = [
       </svg>
     ),
     label: 'Innovative Design',
+    link: '/services/fabrication-services'
   },
   {
     icon: (
@@ -26,6 +28,7 @@ const features = [
       </svg>
     ),
     label: 'Product Analysis',
+    link: '/services/automation-retrofitting'
   },
   {
     icon: (
@@ -34,6 +37,7 @@ const features = [
       </svg>
     ),
     label: 'High Security',
+    link: '/services/maintenance-repair'
   },
 ];
 
@@ -129,16 +133,18 @@ INSTALLATION LLC. is a leading provider of integrated Mechanical, Hydraulic, Ele
               transition={{ delay: 0.4 + i * 0.05, duration: 0.5, type: 'spring', stiffness: 100 }}
               whileHover={{ y: -2 }}
             >
-              <motion.div
-                className="mb-4"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 200 }}
-              >
-                {feature.icon}
-              </motion.div>
-              <p className="font-semibold text-neutral-700 group-hover:text-neutral-800 transition-colors duration-200 text-base text-center">
-                {feature.label}
-              </p>
+              <Link to={feature.link} className="flex flex-col items-center w-full">
+                <motion.div
+                  className="mb-4"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: 'spring', stiffness: 200 }}
+                >
+                  {feature.icon}
+                </motion.div>
+                <p className="font-semibold text-neutral-700 group-hover:text-neutral-800 transition-colors duration-200 text-base text-center cursor-pointer">
+                  {feature.label}
+                </p>
+              </Link>
             </motion.div>
           ))}
         </motion.div>
