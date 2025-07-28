@@ -116,7 +116,7 @@ export default function Hero() {
 
   return (
     <motion.section
-      className="relative text-neutral-800 py-20 px-6 md:px-16 overflow-hidden bg-white gpu-accelerated"
+      className="relative text-neutral-800 py-20 px-6 md:px-16 overflow-hidden gpu-accelerated"
       style={{
         transformOrigin: 'center center',
         minHeight: '70vh',
@@ -146,12 +146,22 @@ export default function Hero() {
           {backgroundSliderImages.map((image, index) => (
             <div
               key={index}
-              className="min-w-full h-full relative"
+              className="min-w-full h-full relative overflow-hidden"
             >
-              <img
+              <motion.img
                 src={image}
                 alt={`Background Slider Image ${index + 1}`}
                 className="w-full h-full object-cover"
+                animate={{
+                  scale: [1, 1.05, 1],
+                  x: [0, 20, 0]
+                }}
+                transition={{
+                  duration: 20,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  repeatType: "reverse"
+                }}
               />
             </div>
           ))}
@@ -262,18 +272,20 @@ export default function Hero() {
               opacity: { delay: 0.8, duration: 1.5, ease: [0.25, 0.46, 0.45, 0.94] },
               y: { delay: 0.8, duration: 1.5, ease: [0.25, 0.46, 0.45, 0.94] },
               backgroundPosition: {
-                duration: 100,
+                duration: 20,
                 ease: "easeInOut",
                 repeat: Infinity,
               }
             }}
             className="text-3xl md:text-4xl font-bold leading-tight mb-0 pb-1 -ml-4 md:-ml-2"
             style={{
-              background: "linear-gradient(-45deg, #ffffff, #60a5fa, #3b82f6, #ffffff)",
+              background: "linear-gradient(-45deg, #ffffff, #1e40af, #1e3a8a, #ffffff)",
               backgroundSize: "400% 400%",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
+              WebkitTextStroke: "1px rgba(255, 255, 255, 0.8)",
+              textShadow: "0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3)",
             }}
           >
             We deliver advanced engineering, automation, and energy solutions
@@ -283,11 +295,13 @@ export default function Hero() {
             variants={textVariants}
             className="text-lg mb-6 mt-2 md:-ml-2"
             style={{
-              background: "linear-gradient(-45deg, #f3f4f6, #dbeafe, #93c5fd, #f3f4f6)",
+              background: "linear-gradient(-45deg, #ffffff, #60a5fa, #3b82f6, #ffffff)",
               backgroundSize: "400% 400%",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
+              WebkitTextStroke: "0.5px rgba(255, 255, 255, 0.6)",
+              textShadow: "0 0 8px rgba(255, 255, 255, 0.4), 0 0 16px rgba(255, 255, 255, 0.2)",
             }}
             animate={{
               backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
@@ -324,6 +338,8 @@ export default function Hero() {
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
+                WebkitTextStroke: "0.5px rgba(255, 255, 255, 0.7)",
+                textShadow: "0 0 8px rgba(255, 255, 255, 0.4), 0 0 16px rgba(255, 255, 255, 0.2)",
               }}
             >
               Innovation, reliability, and performance
