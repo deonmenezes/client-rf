@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getViewportSettings } from '../lib/utils';
 
 // Import your images from assets
@@ -40,10 +40,6 @@ import img34 from "../assets/gallery/img34.jpeg";
 import img35 from "../assets/gallery/img35.jpeg";
 import img36 from "../assets/gallery/img36.jpeg";
 
-
-
-// // Add more imports as needed...
-
 // Gallery images array - add your selected high-quality images here
 const galleryImages = [
   { id: 1, src: img1 },
@@ -82,11 +78,75 @@ const galleryImages = [
   { id: 34, src: img34 },
   { id: 35, src: img35 },
   { id: 36, src: img36 },
-  // Add more images as you select them...
 ];
 
 export default function OurGallery() {
   const [selectedImage, setSelectedImage] = useState(null);
+
+  // Prevent scrolling when modal is open and force viewport to top
+  useEffect(() => {
+    if (selectedImage) {
+      // Scroll to top immediately
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      
+      // Prevent all scrolling
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = '0';
+      document.body.style.left = '0';
+      document.body.style.width = '100%';
+      document.body.style.height = '100%';
+      
+      // Prevent touch scrolling on mobile
+      document.addEventListener('touchmove', preventScroll, { passive: false });
+      document.addEventListener('wheel', preventScroll, { passive: false });
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
+      
+      document.removeEventListener('touchmove', preventScroll);
+      document.removeEventListener('wheel', preventScroll);
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
+      
+      document.removeEventListener('touchmove', preventScroll);
+      document.removeEventListener('wheel', preventScroll);
+    };
+  }, [selectedImage]);
+
+  // Function to prevent scrolling
+  const preventScroll = (e) => {
+    e.preventDefault();
+    return false;
+  };
+
+  // Close modal on escape key
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedImage(null);
+      }
+    };
+
+    if (selectedImage) {
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
+  }, [selectedImage]);
 
   return (
     <motion.section
@@ -153,7 +213,10 @@ export default function OurGallery() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
               whileHover={{ y: -10 }}
-              onClick={() => setSelectedImage(image)}
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'instant' });
+                setSelectedImage(image);
+              }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl"></div>
               
@@ -169,34 +232,77 @@ export default function OurGallery() {
           ))}
         </motion.div>
 
-        {/* Modal for enlarged image */}
+        {/* Fixed Modal for enlarged image */}
         {selectedImage && (
           <motion.div
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedImage(null)}
+            style={{ 
+              position: 'fixed', 
+              top: 0, 
+              left: 0, 
+              right: 0, 
+              bottom: 0,
+              zIndex: 99999,
+              backgroundColor: 'rgba(0, 0, 0, 0.95)',
+              backdropFilter: 'blur(8px)',
+              overflow: 'hidden',
+              margin: 0,
+              padding: 0
+            }}
           >
+            {/* Close button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedImage(null);
+              }}
+              className="absolute top-4 right-4 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center text-gray-600 transition-all duration-200 text-xl font-bold z-10 shadow-lg"
+            >
+              ✕
+            </button>
+
+            {/* Image container */}
             <motion.div
-              className="relative max-w-4xl max-h-[90vh] bg-white rounded-2xl overflow-hidden"
+              className="relative flex items-center justify-center"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
+              style={{ 
+                width: '100vw',
+                height: '100vh',
+                padding: '60px 30px 30px 30px',
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
             >
               <img
                 src={selectedImage.src}
                 alt={`Gallery image ${selectedImage.id}`}
-                className="w-full h-auto max-h-[80vh] object-contain"
+                style={{
+                  maxWidth: '80vw',
+                  maxHeight: '80vh',
+                  width: 'auto',
+                  height: 'auto',
+                  objectFit: 'contain',
+                  userSelect: 'none',
+                  display: 'block'
+                }}
               />
-              <button
-                onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-gray-600 hover:bg-white transition-colors"
-              >
-                ✕
-              </button>
             </motion.div>
+
+            {/* Instructions text */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white/70 text-sm">
+              Click anywhere outside the image or press ESC to close
+            </div>
           </motion.div>
         )}
       </div>
