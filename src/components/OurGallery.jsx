@@ -15,6 +15,32 @@ import img9 from "../assets/gallery/img9.jpeg";
 import img10 from "../assets/gallery/img10.jpeg";
 import img11 from "../assets/gallery/img11.jpeg";
 import img12 from "../assets/gallery/img12.jpeg";
+import img13 from "../assets/gallery/img13.jpeg";
+import img14 from "../assets/gallery/img14.jpeg";
+import img15 from "../assets/gallery/img15.jpeg";
+import img16 from "../assets/gallery/img16.jpeg";
+import img17 from "../assets/gallery/img17.jpeg";
+import img18 from "../assets/gallery/img18.jpeg";
+import img19 from "../assets/gallery/img19.jpeg";
+import img20 from "../assets/gallery/img20.jpeg";
+import img21 from "../assets/gallery/img21.jpeg";
+import img22 from "../assets/gallery/img22.jpeg";
+import img23 from "../assets/gallery/img23.jpeg";
+import img24 from "../assets/gallery/img24.jpeg";
+import img25 from "../assets/gallery/img25.jpeg";
+import img26 from "../assets/gallery/img26.jpeg";
+import img27 from "../assets/gallery/img27.jpeg";
+import img28 from "../assets/gallery/img28.jpeg";
+import img29 from "../assets/gallery/img29.jpeg";
+import img30 from "../assets/gallery/img30.jpeg";
+import img31 from "../assets/gallery/img31.jpeg";
+import img32 from "../assets/gallery/img32.jpeg";
+import img33 from "../assets/gallery/img33.jpeg";
+import img34 from "../assets/gallery/img34.jpeg";
+import img35 from "../assets/gallery/img35.jpeg";
+import img36 from "../assets/gallery/img36.jpeg";
+
+
 
 // // Add more imports as needed...
 
@@ -32,6 +58,30 @@ const galleryImages = [
   { id: 10, src: img10 },
   { id: 11, src: img11 },
   { id: 12, src: img12 },
+  { id: 13, src: img13 },
+  { id: 14, src: img14 },
+  { id: 15, src: img15 },
+  { id: 16, src: img16 },
+  { id: 17, src: img17 },
+  { id: 18, src: img18 },
+  { id: 19, src: img19 },
+  { id: 20, src: img20 },
+  { id: 21, src: img21 },
+  { id: 22, src: img22 },
+  { id: 23, src: img23 },
+  { id: 24, src: img24 },
+  { id: 25, src: img25 },
+  { id: 26, src: img26 },
+  { id: 27, src: img27 },
+  { id: 28, src: img28 },
+  { id: 29, src: img29 },
+  { id: 30, src: img30 },
+  { id: 31, src: img31 },
+  { id: 32, src: img32 },
+  { id: 33, src: img33 },
+  { id: 34, src: img34 },
+  { id: 35, src: img35 },
+  { id: 36, src: img36 },
   // Add more images as you select them...
 ];
 
