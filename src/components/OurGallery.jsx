@@ -258,9 +258,11 @@ export default function OurGallery() {
             <button
               onClick={(e) => {
                 e.stopPropagation();
+               e.preventDefault();
                 setSelectedImage(null);
               }}
               className="absolute top-4 right-4 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center text-gray-600 transition-all duration-200 text-xl font-bold z-10 shadow-lg"
+             style={{ zIndex: 100000 }}
             >
               ✕
             </button>
