@@ -18,6 +18,24 @@ import { useNavigate } from 'react-router-dom';
 
 const clients = [
   { 
+    name: "Oil & Gas Sector", 
+    serviceId: "hydraulic-services",
+    icon: (
+      <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2L2 7v10c0 5.55 3.84 9.739 9 9.949V19h2v7.949c5.16-.21 9-4.399 9-9.949V7l-10-5z"/>
+      </svg>
+    )
+  },
+  { 
+    name: "Marine", 
+    serviceId: "pneumatic-systems",
+    icon: (
+      <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M6.5 12C5.67 12 5 12.67 5 13.5S5.67 15 6.5 15 8 14.33 8 13.5 7.33 12 6.5 12M17.5 12C16.67 12 16 12.67 16 13.5S16.67 15 17.5 15 19 14.33 19 13.5 18.33 12 17.5 12M9.84 8.16L8.5 9.5L10.19 11.19C10.07 11.61 10 12.05 10 12.5C10 13.14 10.12 13.75 10.34 14.31L2.5 22.14L3.86 23.5L11.69 15.66C12.25 15.88 12.86 16 13.5 16S14.75 15.88 15.31 15.66L23.14 23.5L24.5 22.14L16.66 14.31C16.88 13.75 17 13.14 17 12.5C17 12.05 16.93 11.61 16.81 11.19L18.5 9.5L17.16 8.16L15.34 10C14.75 9.12 13.86 8.5 12.84 8.16V6H11.16V8.16C10.14 8.5 9.25 9.12 8.66 10L6.84 8.16Z"/>
+      </svg>
+    )
+  },
+  { 
     name: "Steel & Pipe Manufacturing", 
     serviceId: "fabrication-services",
     icon: (
@@ -27,35 +45,8 @@ const clients = [
     )
   },
   { 
-    name: "Marine", 
-    serviceId: "hydraulic-services",
-    icon: (
-      <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M6.5 12C5.67 12 5 12.67 5 13.5S5.67 15 6.5 15 8 14.33 8 13.5 7.33 12 6.5 12M17.5 12C16.67 12 16 12.67 16 13.5S16.67 15 17.5 15 19 14.33 19 13.5 18.33 12 17.5 12M9.84 8.16L8.5 9.5L10.19 11.19C10.07 11.61 10 12.05 10 12.5C10 13.14 10.12 13.75 10.34 14.31L2.5 22.14L3.86 23.5L11.69 15.66C12.25 15.88 12.86 16 13.5 16S14.75 15.88 15.31 15.66L23.14 23.5L24.5 22.14L16.66 14.31C16.88 13.75 17 13.14 17 12.5C17 12.05 16.93 11.61 16.81 11.19L18.5 9.5L17.16 8.16L15.34 10C14.75 9.12 13.86 8.5 12.84 8.16V6H11.16V8.16C10.14 8.5 9.25 9.12 8.66 10L6.84 8.16Z"/>
-      </svg>
-    )
-  },
-  { 
-    name: "Construction", 
-    serviceId: "electrical-services",
-    icon: (
-      <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M12 3L2 12H5V20H19V12H22L12 3M12 7.7L17 12V18H15V14H9V18H7V12L12 7.7Z"/>
-      </svg>
-    )
-  },
-  { 
-    name: "EPC Contractors", 
-    serviceId: "automation-retrofitting",
-    icon: (
-      <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M3 3V21H21V3H3M19 19H5V5H19V19M7 7V17H9V7H7M11 7V17H13V7H11M15 7V17H17V7H15Z"/>
-      </svg>
-    )
-  },
-  { 
     name: "Aviation Sector", 
-    serviceId: "pneumatic-systems",
+    serviceId: "automation-retrofitting",
     icon: (
       <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
         <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
@@ -64,10 +55,19 @@ const clients = [
   },
   { 
     name: "Railways", 
-    serviceId: "maintenance-repair",
+    serviceId: "electrical-services",
     icon: (
       <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
         <path d="M12 2c-4 0-8 .5-8 4v9.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h2.23l2-2H14l2 2h2v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-3.58-4-8-4zM7.5 17c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/>
+      </svg>
+    )
+  },
+  { 
+    name: "Construction & EPC Contractors", 
+    serviceId: "maintenance-repair",
+    icon: (
+      <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 3L2 12H5V20H19V12H22L12 3M12 7.7L17 12V18H15V14H9V18H7V12L12 7.7Z"/>
       </svg>
     )
   },

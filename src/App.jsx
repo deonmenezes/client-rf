@@ -7,6 +7,7 @@ import ServiceDetail from './components/ServiceDetail';
 import About from './components/About';
 import Features from './components/Features';
 import Gallery from './components/Gallery';
+import OurGallery from './components/OurGallery';
 import Clients from './components/Clients';
 import ProjectHighlight from './components/ProjectHighlight';
 import Blog from './components/Blog';
@@ -48,6 +49,7 @@ function App() {
             <Route path="/projects" element={<Clients />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contacts" element={<Contact />} />
+            <Route path="/gallery" element={<OurGallery />} />
           </Routes>
         </div>
         <Footer />

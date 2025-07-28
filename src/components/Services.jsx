@@ -6,7 +6,7 @@ import { useResponsiveViewport } from '../lib/hooks';
 const cards = [
   {
     id: '01',
-    title: 'Oil and Gas',
+    title: 'Oil & Gas Sector',
     img: 'https://new.abb.com/images/librariesprovider87/drives-global/drives-frontpage-segment-oilgas.jpg?sfvrsn=82109a0a_0',
   },
   {
@@ -16,13 +16,23 @@ const cards = [
   },
   {
     id: '03',
-    title: 'Power and Energy',
-    img: 'https://media.istockphoto.com/id/1135081245/photo/high-voltage-power-lines-electricity-distribution-station-high-voltage-electric-transmission.jpg?s=612x612&w=0&k=20&c=WlPe7-tqN_kwy4z1L8lrlIM7ug6pjOSL8Kw32AQaTCE=',
+    title: 'Steel & Pipe',
+    img: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
   },
   {
     id: '04',
-    title: 'Manufacturing',
-    img: 'https://www.goodwin.edu/enews/wp-content/uploads/2024/12/homa-appliances-pWUyHVJgLhg-unsplash-scaled.jpg',
+    title: 'Aviation',
+    img: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+  },
+  {
+    id: '05',
+    title: 'Railways',
+    img: 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+  },
+  {
+    id: '06',
+    title: 'Construction & EPC Contractors',
+    img: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
   },
 ];
 
@@ -114,7 +124,7 @@ export default function Services() {
 
       {/* Cards */}
       <motion.div
-        className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-2 will-change-transform"
+        className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-2 will-change-transform"
         initial="hidden"
         whileInView="visible"
         viewport={getViewportSettings({ amount: 0.05 })}
@@ -134,7 +144,7 @@ export default function Services() {
             whileHover={{ scale: 1.02 }}
           >
             <motion.div
-              className="absolute top-6 left-6 text-white text-5xl font-bold z-10 border-white/20"
+              className="absolute top-6 left-6 text-gray-800 text-5xl font-bold z-10 border-white/20"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={getViewportSettings({ amount: 0.05 })}
