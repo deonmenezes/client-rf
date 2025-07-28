@@ -265,8 +265,50 @@ RF Electromech Services bridges the gap between engineering ideas and industrial
   },
   'maintenance-repair': {
     title: "Maintenance & Repair",
-    description: "Professional maintenance and repair services for industrial equipment and systems.",
-    fullDescription: "Expert maintenance and repair services to ensure optimal performance and extend the lifespan of your industrial equipment.",
+    description: "Maintenance & Repair Services by RF Electromech Services",
+    fullDescription: `Maintenance & Repair Services by RF Electromech Services
+At RF Electromech Services, we offer reliable, on-time maintenance and repair solutions tailored to keep your industrial operations running with minimal downtime. With a team of experienced technicians and a commitment to safety and quality, we handle everything from routine servicing to emergency breakdown support across various industries.
+
+🔧 Our Core Maintenance & Repair Services Include:
+
+✅ Preventive & Predictive Maintenance
+Scheduled Equipment Inspection & Servicing
+Condition Monitoring (Vibration, Thermal, Electrical)
+Lubrication Programs & System Health Checks
+Downtime Reduction Strategies
+
+✅ Breakdown & Emergency Repairs
+24/7 On-Site Fault Diagnosis
+Rapid Troubleshooting & Component Replacement
+Electrical, Mechanical & Hydraulic System Repairs
+Control Panel & Drive System Restoration
+
+✅ Rotating Equipment Services
+Motor, Pump & Compressor Overhauls
+Bearing Replacement & Alignment
+Balancing & Vibration Rectification
+Gearbox & Coupling Reconditioning
+
+✅ General Plant Support & AMC
+Annual Maintenance Contracts (AMC)
+Plant Utility Systems Servicing (Air, Water, HVAC)
+CNC & Fabrication Machine Support
+Documentation & Maintenance Logs
+
+🛠️ Industries We Serve:
+Construction & EPC Contractors
+Steel & Pipe Manufacturing
+Water & Wastewater
+Marine & Transportation
+Food Processing
+Chemical & Packaging Industries
+
+💡 From Preventive Care to Emergency Response:
+Our maintenance philosophy focuses on maximizing equipment reliability and operational efficiency. We combine traditional maintenance practices with modern predictive technologies to deliver cost-effective solutions that extend equipment life and reduce unexpected failures.
+
+RF Electromech Services is your trusted partner for comprehensive maintenance and repair solutions. Our proactive approach ensures your operations continue smoothly while minimizing costs and maximizing productivity.
+
+📞 Contact us today for reliable maintenance and repair services.`,
     image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12",
     features: ["Preventive Maintenance", "Emergency Repairs", "Equipment Diagnostics", "Performance Optimization"]
   }
@@ -337,7 +379,9 @@ export default function ServiceDetail() {
                   src={service.image} 
                   alt={service.title}
                   className={`relative w-full h-auto object-cover rounded-xl shadow-2xl ${
-                    serviceId === 'fabrication-services' ? 'max-w-sm mx-auto' : 'max-w-lg mx-auto'
+                    serviceId === 'fabrication-services' ? 'max-w-sm mx-auto' : 
+                    serviceId === 'electrical-services' || serviceId === 'hydraulic-services' ? 'max-w-md mx-auto' : 
+                    'max-w-lg mx-auto'
                   }`}
                 />
               </div>
@@ -384,5 +428,8 @@ export default function ServiceDetail() {
     </motion.div>
   );
 }
+
+
+
 
 
