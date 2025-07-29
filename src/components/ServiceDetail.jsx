@@ -311,6 +311,23 @@ RF Electromech Services is your trusted partner for comprehensive maintenance an
 📞 Contact us today for reliable maintenance and repair services.`,
     image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12",
     features: ["Preventive Maintenance", "Emergency Repairs", "Equipment Diagnostics", "Performance Optimization"]
+  },
+  'erection-commissioning': {
+    title: "Erection & Commissioning",
+    description: "RF Electromech Services – Project Report (PIPETEC - Bending Plant Manufacturing)",
+    fullDescription: `RF Electromech Services – Project Report (PIPETEC - Bending Plant Manufacturing)
+
+🏭 Project Overview
+RF Electromech Services successfully completed the Erection & Commissioning of a state-of-the-art Pipe Bending Plant, which included complete Hydraulic System Integration and Electrical Panel Setup. This turnkey project showcases our expertise in mechanical fabrication, automation, and precision control systems.
+
+📍 Site Location
+Client: Pipetec, Kizad
+
+Location: Kezad, Abu Dhabi
+
+Scope: Bending Plant Erection & Commissioning`,
+    image: "https://padmatechindustries.com/wp-content/uploads/2024/07/Mask-group-87-1.png",
+    features: ["Plant Installation", "System Integration", "Performance Testing", "Project Management"]
   }
 };
 
@@ -381,6 +398,7 @@ export default function ServiceDetail() {
                   className={`relative w-full h-auto object-cover rounded-xl shadow-2xl ${
                     serviceId === 'fabrication-services' ? 'max-w-sm mx-auto' : 
                     serviceId === 'electrical-services' || serviceId === 'hydraulic-services' ? 'max-w-md mx-auto' : 
+                    serviceId === 'erection-commissioning' ? 'max-w-3xl mx-auto' :
                     'max-w-lg mx-auto'
                   }`}
                 />
@@ -428,6 +446,10 @@ export default function ServiceDetail() {
     </motion.div>
   );
 }
+
+
+
+
 
 
 

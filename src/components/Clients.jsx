@@ -71,6 +71,15 @@ const clients = [
       </svg>
     )
   },
+  { 
+    name: "Erection & Commissioning", 
+    serviceId: "erection-commissioning",
+    icon: (
+      <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2M12 21L10.91 14.74L2 14L10.91 13.26L12 7L13.09 13.26L22 14L13.09 14.74L12 21Z"/>
+      </svg>
+    )
+  },
 ];
 
 const clientCompanies = [
@@ -228,7 +237,7 @@ export default function Clients() {
         </motion.div>
 
         {/* Industries Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-7 gap-6 mb-20">
           {clients.map((client, idx) => (
             <motion.div
               key={idx}
@@ -340,69 +349,7 @@ export default function Clients() {
           ))}
         </div>
 
-        {/* Project Section */}
-        <motion.div
-          className="text-center mb-12 mt-20"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.8, duration: 0.7 }}
-        >
-          <span className="inline-flex items-center px-6 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-blue-500/10 to-cyan-500/10 text-blue-700 border border-blue-500/20 backdrop-blur-sm mb-6">
-            <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
-            Project Highlight
-          </span>
-          
-          <h3 className="text-3xl md:text-4xl font-black text-gray-800 mb-8">
-            Recent{' '}
-            <span className="bg-gradient-to-r from-blue-600 via-cyan-600 to-blue-700 bg-clip-text text-transparent">
-              Project Success
-            </span>
-          </h3>
-
-          {/* Project Report Card */}
-          <motion.div
-            className="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl border border-blue-200/50 p-8 hover:bg-white hover:shadow-2xl transition-all duration-500 hover:shadow-blue-500/20"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.9, duration: 0.6 }}
-          >
-            <div className="text-left">
-              <h4 className="text-2xl font-bold text-gray-800 mb-4">
-                RF Electromech Services – Project Report (PIPETEC - Bending Plant Manufacturing)
-              </h4>
-              
-              <div className="mb-6">
-                <h5 className="text-lg font-semibold text-blue-600 mb-3 flex items-center">
-                  🏭 Project Overview
-                </h5>
-                <p className="text-gray-700 leading-relaxed">
-                  RF Electromech Services successfully completed the Erection & Commissioning of a state-of-the-art Pipe Bending Plant, which included complete Hydraulic System Integration and Electrical Panel Setup. This turnkey project showcases our expertise in mechanical fabrication, automation, and precision control systems.
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-blue-50/50 rounded-xl p-4">
-                  <h6 className="font-semibold text-gray-800 mb-2 flex items-center">
-                    📍 Site Location
-                  </h6>
-                  <p className="text-gray-600 text-sm">Kezad, Abu Dhabi</p>
-                </div>
-                
-                <div className="bg-blue-50/50 rounded-xl p-4">
-                  <h6 className="font-semibold text-gray-800 mb-2">Client</h6>
-                  <p className="text-gray-600 text-sm">Pipetec, Kizad</p>
-                </div>
-                
-                <div className="bg-blue-50/50 rounded-xl p-4">
-                  <h6 className="font-semibold text-gray-800 mb-2">Scope</h6>
-                  <p className="text-gray-600 text-sm">Bending Plant Erection & Commissioning</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
+        
       </div>
 
       {/* Animated Gradient Orbs */}
