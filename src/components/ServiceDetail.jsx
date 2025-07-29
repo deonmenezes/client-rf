@@ -381,36 +381,30 @@ export default function ServiceDetail() {
         </motion.div>
         
         {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+        <div className="flex flex-col items-center gap-12">
           {/* Image Section */}
           <motion.div
-            className="lg:col-span-1"
-            initial={{ x: -30, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            className="w-full"
+            initial={{ y: -30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            <div className="sticky top-8">
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-                <img 
-                  src={service.image} 
-                  alt={service.title}
-                  className={`relative w-full h-auto object-cover rounded-xl shadow-2xl ${
-                    serviceId === 'fabrication-services' ? 'max-w-sm mx-auto' : 
-                    serviceId === 'electrical-services' || serviceId === 'hydraulic-services' ? 'max-w-md mx-auto' : 
-                    serviceId === 'erection-commissioning' ? 'max-w-3xl mx-auto' :
-                    'max-w-lg mx-auto'
-                  }`}
-                />
-              </div>
+            <div className="relative group max-w-4xl mx-auto">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+              <img 
+                src={service.image} 
+                alt={service.title}
+                className="relative w-full h-auto object-contain rounded-xl shadow-2xl"
+                style={serviceId === 'fabrication-services' ? {} : { maxHeight: '500px', objectFit: 'cover' }}
+              />
             </div>
           </motion.div>
           
           {/* Content Section */}
           <motion.div
-            className="lg:col-span-2"
-            initial={{ x: 30, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            className="w-full max-w-5xl"
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
             <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20">
@@ -422,6 +416,51 @@ export default function ServiceDetail() {
             </div>
           </motion.div>
         </div>
+
+        {/* Other Services Section */}
+        <motion.div
+          className="mt-16 pt-8 border-t border-gray-200"
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.6 }}
+        >
+          <h3 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            Explore Our Other Services
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Object.entries(serviceDetails)
+              .filter(([key]) => key !== serviceId)
+              .map(([key, otherService], index) => (
+                <motion.div
+                  key={key}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.7 + index * 0.1 }}
+                >
+                  <Link
+                    to={`/services/${key}`}
+                    className="block bg-white/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-white/30 hover:border-blue-300 group h-full"
+                  >
+                    <div className="flex items-center mb-4">
+                      <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mr-3 group-hover:scale-110 transition-transform"></div>
+                      <h4 className="text-lg font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
+                        {otherService.title}
+                      </h4>
+                    </div>
+                    <p className="text-gray-600 text-sm leading-relaxed group-hover:text-gray-700 transition-colors mb-4 line-clamp-3">
+                      {otherService.description}
+                    </p>
+                    <div className="flex items-center text-blue-600 text-sm font-semibold group-hover:text-blue-700 transition-colors">
+                      Learn More
+                      <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+          </div>
+        </motion.div>
 
         {/* Call to Action */}
         <motion.div

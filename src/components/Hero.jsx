@@ -131,22 +131,22 @@ export default function Hero() {
     >
       {/* Background Images */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <motion.div
-          className="flex w-full h-full"
-          animate={{
-            x: `-${currentBgImageIndex * 100}%`
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 50,
-            damping: 25,
-            duration: 2.5
-          }}
-        >
-          {backgroundSliderImages.map((image, index) => (
-            <div
+        {backgroundSliderImages.map((image, index) => {
+          const isCurrentImage = index === currentBgImageIndex;
+          const isPreviousImage = index === (currentBgImageIndex - 1 + backgroundSliderImages.length) % backgroundSliderImages.length;
+          
+          return (
+            <motion.div
               key={index}
-              className="min-w-full h-full relative overflow-hidden"
+              className="absolute inset-0 w-full h-full"
+              initial={{ x: index === 0 ? "0%" : "100%" }}
+              animate={{
+                x: isCurrentImage || isPreviousImage ? "0%" : "100%",
+                zIndex: isCurrentImage ? 2 : isPreviousImage ? 1 : 0,
+              }}
+              transition={{
+                x: isCurrentImage ? { type: "spring", stiffness: 50, damping: 25, duration: 2.5 } : { duration: 0 },
+              }}
             >
               <motion.img
                 src={image}
@@ -154,7 +154,6 @@ export default function Hero() {
                 className="w-full h-full object-cover"
                 animate={{
                   scale: [1, 1.05, 1],
-                  x: [0, 20, 0]
                 }}
                 transition={{
                   duration: 20,
@@ -163,10 +162,12 @@ export default function Hero() {
                   repeatType: "reverse"
                 }}
               />
-            </div>
-          ))}
-        </motion.div>
-        <div className="absolute inset-0 bg-neutral-900 opacity-10"></div>
+            </motion.div>
+          );
+        })}
+        <div className="absolute inset-0 bg-neutral-900 opacity-10 z-10"></div>
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black opacity-40 z-10"></div>
       </div>
 
       {/* Grid Pattern */}
