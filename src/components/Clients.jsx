@@ -14,6 +14,14 @@ import client12 from "../assets/client12.png"
 //import client13 from "../assets/client13.jpeg"
 import client14 from "../assets/client14.jpeg"
 import client15 from "../assets/client15.png"
+import client16 from "../assets/client16.png"
+import client17 from "../assets/client17.jpeg"
+import client18 from "../assets/client18.jpg"
+import client19 from "../assets/client19.jpg"
+import client20 from "../assets/client20.png"
+import client21 from "../assets/client21.jpeg"
+//import client22 from "../assets/client22.jpeg"
+
 import { useNavigate } from 'react-router-dom';
 
 const clients = [
@@ -129,6 +137,34 @@ const clientCompanies = [
     id: 15,
     logo: client15, // Placeholder - add your logo src here
   },
+  {
+    id: 16,
+    logo: client16, // Placeholder - add your logo src here
+  },
+  {
+    id: 17,
+    logo: client17, // Placeholder - add your logo src here
+  },
+  {
+    id: 18,
+    logo: client18, // Placeholder - add your logo src here
+  },
+  {
+    id: 19,
+    logo: client19, // Placeholder - add your logo src here
+  },
+  {
+    id: 20,
+    logo: client20, // Placeholder - add your logo src here
+  },
+  {
+    id: 21,
+    logo: client21, // Placeholder - add your logo src here
+  },
+  // {
+  //   id: 22,
+  //   logo: client22, // Placeholder - add your logo src here
+  // },
 ];
 
 export default function Clients() {
