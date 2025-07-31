@@ -259,6 +259,7 @@ export default function Gallery() {
 
         {/* ISO Certification Section */}
         <motion.div
+          id="iso-certified"
           className="mt-20"
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
