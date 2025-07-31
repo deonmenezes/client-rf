@@ -327,62 +327,26 @@ export default function Clients() {
           </h3>
         </motion.div>
 
-        {/* Client Companies Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {clientCompanies.map((company, idx) => (
-            <motion.div
-              key={company.id}
-              className="group relative h-48 bg-white/80 backdrop-blur-sm rounded-2xl border border-blue-200/50 overflow-hidden hover:bg-white hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-blue-500/20"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 0.6 }}
-              whileHover={{ y: -10 }}
-            >
-              {/* Gradient Border Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-cyan-400/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl"></div>
-              
-              {/* Logo Container */}
-              <div className="relative z-10 h-full flex flex-col justify-between p-6">
-                {/* Logo Placeholder */}
-                <div className="flex-1 flex items-center justify-center">
-                  {company.logo ? (
-                    <img 
-                      src={company.logo} 
-                      alt={company.name}
-                      className="max-w-full max-h-20 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
-                    />
-                  ) : (
-                    <motion.div
-                      className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-xl border border-blue-400/30 flex items-center justify-center backdrop-blur-sm group-hover:bg-gradient-to-br group-hover:from-blue-500/30 group-hover:to-cyan-500/30 transition-all duration-300"
-                      whileHover={{ rotate: 5, scale: 1.1 }}
-                    >
-                      <span className="text-2xl font-bold bg-gradient-to-br from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-                        {company.name.charAt(0)}
-                      </span>
-                    </motion.div>
-                  )}
-                </div>
-
-                {/* Company Info */}
-                <div className="text-center">
-                  <h4 className="text-gray-800 font-semibold mb-1 group-hover:text-blue-600 transition-colors duration-300">
-                    {company.name}
-                  </h4>
-                  <p className="text-gray-600 text-sm group-hover:text-gray-700 transition-colors duration-300">
-                    {company.industry}
-                  </p>
-                  
-                  {/* Bottom Accent */}
-                  <motion.div 
-                    className="mx-auto mt-3 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full transition-all duration-300"
-                    initial={{ width: "20px" }}
-                    whileHover={{ width: "40px" }}
-                  />
-                </div>
+        {/* Moving Company Logos - First Row */}
+        <div className="relative overflow-hidden py-6 mb-8 bg-white/60 backdrop-blur-sm rounded-2xl border border-blue-200/50">
+          <motion.div className="flex space-x-12" animate={{ x: [0, -2000] }} transition={{ duration: 25, repeat: Infinity, ease: "linear", repeatType: "loop" }}>
+            {[...clientCompanies.slice(0, Math.ceil(clientCompanies.length/2)), ...clientCompanies.slice(0, Math.ceil(clientCompanies.length/2)), ...clientCompanies.slice(0, Math.ceil(clientCompanies.length/2))].map((company, idx) => (
+              <div key={`row1-${company.id}-${idx}`} className="flex-shrink-0 w-40 h-20 flex items-center justify-center">
+                <img src={company.logo} alt={`Client ${company.id}`} className="max-w-full max-h-full object-contain" />
               </div>
-            </motion.div>
-          ))}
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Moving Company Logos - Second Row */}
+        <div className="relative overflow-hidden py-6 mb-16 bg-white/60 backdrop-blur-sm rounded-2xl border border-blue-200/50">
+          <motion.div className="flex space-x-12" animate={{ x: [-2000, 0] }} transition={{ duration: 30, repeat: Infinity, ease: "linear", repeatType: "loop" }}>
+            {[...clientCompanies.slice(Math.ceil(clientCompanies.length/2)), ...clientCompanies.slice(Math.ceil(clientCompanies.length/2)), ...clientCompanies.slice(Math.ceil(clientCompanies.length/2))].map((company, idx) => (
+              <div key={`row2-${company.id}-${idx}`} className="flex-shrink-0 w-40 h-20 flex items-center justify-center">
+                <img src={company.logo} alt={`Client ${company.id}`} className="max-w-full max-h-full object-contain" />
+              </div>
+            ))}
+          </motion.div>
         </div>
 
         
